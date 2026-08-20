@@ -6,6 +6,13 @@
 <meta name="robots" content="noindex, nofollow">
 <title>מתוצרים חד־פעמיים לנכסים מתמשכים · NGG Deep Research</title>
 <link rel="icon" type="image/png" href="assets/ngg-mark.png">
+<style>
+/* גובה תצוגה דינמי — מונע חיתוך של סרגל הניווט התחתון כשסרגלי הדפדפן גלויים */
+@supports (height:100dvh){
+  html,body{height:100dvh !important}
+  div[dir="rtl"][lang="he"]{height:100dvh !important}
+}
+</style>
 <script src="vendor/react.production.min.js"></script>
 <script src="vendor/react-dom.production.min.js"></script>
 <script src="./support.js"></script>
@@ -664,6 +671,9 @@ a:hover{color:#ec2a8c}
   <div style="font-size:21px;font-weight:900;letter-spacing:.04em;{{ui.brandA}}">NGG</div>
   <div style="font-size:12.5px;white-space:nowrap;{{ui.brandB}}">מחקר 02 · נכסים מתמשכים</div>
 </div>
+<a href="index.html" title="יציאה לעמוד הראשי" style="position:absolute;right:14px;top:26px;z-index:7;width:34px;height:34px;border-radius:50%;background:transparent;display:flex;align-items:center;justify-content:center;{{ui.exit}}" style-hover="border-color:#ec2a8c;color:#ee4f9e">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line></svg>
+</a>
 <div style="position:absolute;left:56px;top:38px;z-index:6;display:flex;align-items:center;gap:14px;{{ui.cluster}}">
   <button onClick="{{onMute}}" title="שמע" style="width:38px;height:38px;border-radius:50%;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;{{ui.mute}}">
     <svg viewBox="0 0 24 24" style="width:17px;height:17px;overflow:visible">
@@ -678,8 +688,9 @@ a:hover{color:#ec2a8c}
   <div style="position:absolute;inset:0;{{ui.track}}"></div>
   <div ref="{{progRef}}" style="position:absolute;right:0;top:0;bottom:0;width:0%;background:#ec2a8c"></div>
 </div>
-<div style="position:absolute;left:0;right:0;bottom:44px;z-index:6;display:flex;justify-content:center;pointer-events:none;{{ui.ctaWrap}}">
+<div style="position:absolute;left:0;right:0;bottom:44px;z-index:6;display:flex;justify-content:center;align-items:stretch;gap:14px;pointer-events:none;{{ui.ctaWrap}}">
   <button onClick="{{onNext}}" style="pointer-events:auto;background:#ec2a8c;color:#ffffff;border:none;border-radius:9px;padding:14px 58px;font-size:18px;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 8px 24px rgba(236,42,140,.3);{{ui.cta}}" style-hover="background:#d11e78" style-active="transform:scale(.985)">{{ctaTxt}}</button>
+  <button onClick="{{onBack}}" title="חזרה לשקופית הקודמת" style="pointer-events:auto;background:transparent;border-radius:9px;padding:13px 24px;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:8px;{{ui.back}}" style-hover="border-color:#ec2a8c;color:#ee4f9e"><span style="font-size:16px">→</span><span>חזרה</span></button>
 </div>
 <div style="position:absolute;right:56px;bottom:52px;z-index:6;max-width:430px;text-align:right;font-size:11.5px;{{ui.src}}">
   <a href="uploads/NGG_Research_02_Persistent_Assets_Design_Pack/references/research_02_full_he.pdf" target="_blank" rel="noopener">{{srcTxt}} ↗</a>
@@ -762,7 +773,7 @@ class Component extends DCLogic {
     const fit=()=>{const el=this.rootRef.current;if(!el)return;const r=el.getBoundingClientRect();
       this.setState({sc:Math.min(r.width/1600,r.height/900)});};
     fit();window.addEventListener('resize',fit);this._fit=fit;
-    this._key=(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();this.next();}};
+    this._key=(e)=>{if(e.key==='Enter'||e.key===' '||e.key==='ArrowLeft'){e.preventDefault();this.next();}else if(e.key==='ArrowRight'){e.preventDefault();this.back();}};
     window.addEventListener('keydown',this._key);
     const tick=()=>{this._raf=requestAnimationFrame(tick);this.applyCues();};
     this._raf=requestAnimationFrame(tick);
@@ -814,6 +825,7 @@ class Component extends DCLogic {
     if(v>=1&&v<=9){this.goTo(v+1);return;}
     if(v===10){this.fadeAudio();this.setState({view:11,lock:true});clearTimeout(this._lockT);this._lockT=setTimeout(()=>this.setState({lock:false}),900);}
   }
+  back(){if(this.state.lock)return;const v=this.state.view;if(v>=2&&v<=10)this.goTo(v-1);}
   restart(){if(this.state.lock)return;this.fadeAudio();this.setState({view:0,f:{}});}
   fadeAudio(){
     const a=this.audio;if(!a)return;this.audio=null;
@@ -996,7 +1008,7 @@ class Component extends DCLogic {
     else if(F(10,'deck'))cons='opacity:1;transform:translateX(0px);transition:opacity .9s ease .4s';
     return {
       sc:this.state.sc,
-      onNext:()=>this.next(),onMute:()=>this.toggleMute(),onRestart:()=>this.restart(),
+      onNext:()=>this.next(),onBack:()=>this.back(),onMute:()=>this.toggleMute(),onRestart:()=>this.restart(),
       rootRef:this.rootRef,progRef:this.progRef,
       bgS:'background:'+(BG[v]||'#0a0a12')+';transition:background 1.3s ease',
       lay:{c:this.lay(0,true),s1:this.lay(1,false),s2:this.lay(2,false),s3:this.lay(3,false),s4:this.lay(4,false),s5:this.lay(5,false),s6:this.lay(6,false),s7:this.lay(7,false),s8:this.lay(8,false),s9:this.lay(9,false),s10:this.lay(10,false),end:this.lay(11,true)},
@@ -1009,6 +1021,8 @@ class Component extends DCLogic {
         brandB:'color:'+(dk?'#8e8d99':'#98958a')+';transition:color 1s ease',
         cluster:'opacity:'+(on?1:0)+';pointer-events:'+(on?'auto':'none')+';transition:opacity .7s ease .3s',
         mute:'border:1px solid '+(dk?'rgba(244,243,246,.3)':'rgba(27,27,35,.25)')+';color:'+(dk?'#b9b8c2':'#56555c')+';transition:border-color 1s ease,color 1s ease',
+        back:'opacity:'+(on&&v>=2?1:0)+';pointer-events:'+(on&&v>=2?'auto':'none')+';border:1px solid '+(dk?'rgba(244,243,246,.3)':'rgba(27,27,35,.25)')+';color:'+(dk?'#b9b8c2':'#56555c')+';transition:opacity .5s ease,border-color 1s ease,color 1s ease',
+        exit:'border:1px solid '+(dk?'rgba(244,243,246,.3)':'rgba(27,27,35,.25)')+';color:'+(dk?'#b9b8c2':'#56555c')+';transition:border-color 1s ease,color 1s ease',
         mw:fade(!this.state.muted,.3),mx:fade(this.state.muted,.3),
         cnt:'color:'+(dk?'#8e8d99':'#98958a')+';transition:color 1s ease',
         progWrap:'opacity:'+(on?1:0)+';transition:opacity .7s ease',

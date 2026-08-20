@@ -1,8 +1,9 @@
 # NGG Deep Research — Interactive Learning Units
 
-Static site presenting the takeaways of the NGG deep-research study
-**תמחור תשומות ותוצרים בעידן ה-AI — השוק הישראלי** as a series of interactive,
-narrated slide units. Planned scope: 5 units. Currently live: units 01–02.
+Static site presenting NGG deep-research findings — pricing, methods, tools,
+and ways of action — as a series of interactive, narrated slide units, each
+distilling a study on a different organizational topic. Planned scope: 5
+units. Currently live: units 01–02.
 
 ## Structure
 

@@ -6,6 +6,13 @@
 <meta name="robots" content="noindex, nofollow">
 <title>כש-AI מקצר את העבודה — מה קורה למחיר? · NGG Deep Research</title>
 <link rel="icon" type="image/png" href="assets/ngg-mark.png">
+<style>
+/* גובה תצוגה דינמי — מונע חיתוך של סרגל הניווט התחתון כשסרגלי הדפדפן גלויים */
+@supports (height:100dvh){
+  html,body{height:100dvh !important}
+  div[dir="rtl"][lang="he"]{height:100dvh !important}
+}
+</style>
 <script src="vendor/react.production.min.js"></script>
 <script src="vendor/react-dom.production.min.js"></script>
 <script src="./support.js"></script>
@@ -411,8 +418,13 @@ a:hover{color:#ec2a8c}
     </div>
   </div>
 
+  <a href="index.html" title="יציאה לעמוד הראשי" style="position:absolute;right:36px;top:26px;z-index:7;width:40px;height:40px;border-radius:50%;background:transparent;display:flex;align-items:center;justify-content:center;{{ui.exitS}}" style-hover="border-color:#ec2a8c;color:#ee4f9e">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line></svg>
+  </a>
+
   <div style="position:absolute;left:36px;bottom:30px;z-index:6;display:flex;align-items:center;gap:12px;{{ui.clusterS}}">
     <button onClick="{{onNext}}" style="background:#ec2a8c;color:#ffffff;border:none;border-radius:9px;padding:13px 32px;font-size:16.5px;font-weight:700;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(236,42,140,.3);{{ui.ctaS}}" style-hover="background:#d11e78" style-active="transform:scale(.985)"><span>{{ctaTxt}}</span><span style="font-size:17px">←</span></button>
+    <button onClick="{{onBack}}" title="חזרה לשקופית הקודמת" style="background:transparent;border-radius:9px;padding:12px 20px;font-size:14.5px;font-weight:600;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:8px;{{ui.backS}}" style-hover="border-color:#ec2a8c;color:#ee4f9e"><span style="font-size:15px">→</span><span>חזרה</span></button>
     <button onClick="{{onMute}}" title="שמע" style="width:42px;height:42px;border-radius:50%;background:transparent;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;{{ui.muteS}}">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M11 5 L6 9 L2 9 L2 15 L6 15 L11 19 Z"></path>
@@ -683,6 +695,7 @@ class Component extends DCLogic {
     const inn=F(5,'in');
     return {
       onNext:()=>this.next(),
+      onBack:()=>this.back(),
       onMute:()=>this.toggleMute(),
       onRestart:()=>this.restart(),
       stageRef:this.stageRef,progRef:this.progRef,cntRef:this.cntRef,dot2Ref:this.dot2Ref,costRef:this.costRef,
@@ -705,6 +718,8 @@ class Component extends DCLogic {
         clusterS:'opacity:'+(on?1:0)+';pointer-events:'+(on?'auto':'none')+';transition:opacity .7s ease .3s',
         ctaS:settle?'animation:ctaPulse 2.1s ease .2s 2':'',
         muteS:'border:1px solid '+(dk?'rgba(255,255,255,.28)':'rgba(21,21,31,.18)')+';color:'+(dk?'#b5b3b4':'#5a5a5c')+';transition:border-color .9s ease,color .9s ease',
+        backS:'opacity:'+(on&&v>=2?1:0)+';pointer-events:'+(on&&v>=2?'auto':'none')+';border:1px solid '+(dk?'rgba(255,255,255,.28)':'rgba(21,21,31,.18)')+';color:'+(dk?'#b5b3b4':'#5a5a5c')+';transition:opacity .5s ease,border-color .9s ease,color .9s ease',
+        exitS:'border:1px solid '+(dk?'rgba(255,255,255,.28)':'rgba(21,21,31,.18)')+';color:'+(dk?'#b5b3b4':'#5a5a5c')+';transition:border-color .9s ease,color .9s ease',
         progWrapS:'opacity:'+(on?1:0)+';transition:opacity .7s ease .3s',
         trackS:'background:'+(dk?'rgba(255,255,255,.14)':'rgba(21,21,31,.1)')+';transition:background .9s ease',
         cntS:'color:'+(dk?'#8f8f96':'#949494')+';transition:color .9s ease',
