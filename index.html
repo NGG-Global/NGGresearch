@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>NGG Deep Research · תמחור בעידן ה-AI</title>
+<meta name="description" content="סדרת יחידות למידה אינטראקטיביות מבית NGG — תובנות ממחקר העומק על תמחור תשומות ותוצרים בעידן ה-AI בשוק הישראלי.">
+<link rel="icon" type="image/png" href="assets/ngg-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Frank+Ruhl+Libre:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-a:#15151f;
+    --bg-b:#080810;
+    --ink:#f1f0f4;
+    --ink-soft:#b9b8c2;
+    --ink-mute:#8e8d99;
+    --accent:#ec2a8c;
+    --line:rgba(255,255,255,.09);
+    --card:rgba(255,255,255,.03);
+    --card-hover:rgba(255,255,255,.055);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    min-height:100vh;
+    background:linear-gradient(160deg,var(--bg-a) 0%,var(--bg-b) 100%) fixed;
+    color:var(--ink);
+    font-family:'Heebo',system-ui,'Arial Hebrew',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+
+  .watermark{
+    position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0;
+  }
+  .watermark img{
+    position:absolute;left:-6%;top:-12%;width:46vw;min-width:480px;opacity:.05;
+  }
+
+  .wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 48px 90px}
+
+  header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:34px 0 0;
+  }
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand img{height:54px;width:auto;display:block}
+  .brand-note{
+    font-family:ui-monospace,'SF Mono',Menlo,monospace;
+    font-size:12px;letter-spacing:.22em;color:var(--ink-mute);
+    direction:ltr;text-align:left;
+  }
+
+  .hero{padding:86px 0 64px;max-width:900px}
+  .kicker{
+    font-family:ui-monospace,'SF Mono',Menlo,monospace;
+    font-size:14px;letter-spacing:.26em;color:var(--ink-mute);
+    direction:ltr;text-align:right;
+  }
+  .rule{width:120px;height:3px;background:var(--accent);margin:26px 0 30px}
+  h1{
+    margin:0;
+    font-family:'Frank Ruhl Libre','Heebo',serif;
+    font-size:clamp(38px,5.2vw,68px);
+    font-weight:900;line-height:1.16;letter-spacing:-.01em;color:#f7f6f9;
+  }
+  .hero p{
+    margin:24px 0 0;max-width:760px;
+    font-size:21px;font-weight:300;line-height:1.65;color:var(--ink-soft);
+  }
+  .hero-meta{
+    margin-top:30px;display:flex;flex-wrap:wrap;gap:10px 26px;
+    font-size:14px;color:var(--ink-mute);
+  }
+  .hero-meta span{display:inline-flex;align-items:center;gap:8px}
+  .hero-meta i{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
+
+  .grid{
+    display:grid;gap:26px;
+    grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  }
+
+  .card{
+    position:relative;display:flex;flex-direction:column;
+    border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    background:var(--card);
+    transition:transform .35s ease,border-color .35s ease,background .35s ease,box-shadow .35s ease;
+  }
+  a.card:hover,a.card:focus-visible{
+    transform:translateY(-5px);
+    border-color:rgba(236,42,140,.55);
+    background:var(--card-hover);
+    box-shadow:0 22px 48px rgba(0,0,0,.42);
+    outline:none;
+  }
+
+  .thumb{
+    aspect-ratio:16/9;width:100%;
+    background:#0d0d16;border-bottom:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .thumb .mark{width:26%;height:auto;opacity:.14}
+
+  .card-body{display:flex;flex-direction:column;gap:12px;padding:24px 26px 26px;flex:1}
+  .card-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .unit-tag{
+    font-family:ui-monospace,'SF Mono',Menlo,monospace;
+    font-size:12px;letter-spacing:.24em;color:var(--ink-mute);
+    direction:ltr;
+  }
+  .badge{
+    font-size:12px;font-weight:600;letter-spacing:.02em;
+    padding:4px 12px;border-radius:999px;white-space:nowrap;
+  }
+  .badge.live{color:#ffd7ea;background:rgba(236,42,140,.16);border:1px solid rgba(236,42,140,.45)}
+  .badge.soon{color:var(--ink-mute);background:rgba(255,255,255,.05);border:1px solid var(--line)}
+
+  .card h2{
+    margin:2px 0 0;font-size:24px;font-weight:800;line-height:1.35;color:#f7f6f9;
+  }
+  .card p{
+    margin:0;font-size:15.5px;font-weight:300;line-height:1.6;color:var(--ink-soft);flex:1;
+  }
+  .card-cta{
+    margin-top:14px;display:inline-flex;align-items:center;gap:10px;
+    font-size:15px;font-weight:600;color:var(--accent);
+  }
+  .card-cta svg{transition:transform .3s ease}
+  a.card:hover .card-cta svg{transform:translateX(-5px)}
+
+  .card.soon-card{opacity:.62}
+  .card.soon-card h2{color:var(--ink-soft)}
+
+  footer{
+    margin-top:84px;padding-top:30px;border-top:1px solid var(--line);
+    display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;
+    font-size:13px;color:var(--ink-mute);
+  }
+  footer .foot-en{font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.18em;direction:ltr}
+
+  /* מופע כניסה שקט — מכבד prefers-reduced-motion */
+  .reveal{opacity:0;transform:translateY(18px);animation:rise .8s cubic-bezier(.22,.61,.36,1) forwards}
+  .d1{animation-delay:.08s}.d2{animation-delay:.16s}.d3{animation-delay:.24s}
+  .d4{animation-delay:.32s}.d5{animation-delay:.40s}.d6{animation-delay:.48s}.d7{animation-delay:.56s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion: reduce){
+    *{transition-duration:1ms !important;animation-duration:1ms !important;animation-delay:0s !important}
+  }
+
+  @media (max-width:720px){
+    .wrap{padding:0 22px 60px}
+    .hero{padding:56px 0 44px}
+    .hero p{font-size:18px}
+    .brand img{height:44px}
+    .brand-note{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="watermark" aria-hidden="true"><img src="assets/ngg-mark-white.png" alt=""></div>
+
+<div class="wrap">
+
+  <header class="reveal">
+    <div class="brand">
+      <img src="assets/ngg-logo-white.png" alt="NGG">
+    </div>
+    <div class="brand-note">DEEP RESEARCH SERIES</div>
+  </header>
+
+  <section class="hero">
+    <div class="kicker reveal d1">NGG DEEP RESEARCH</div>
+    <div class="rule reveal d1"></div>
+    <h1 class="reveal d2">תמחור תשומות ותוצרים<br>בעידן ה-AI</h1>
+    <p class="reveal d3">
+      מחקר עומק על השוק הישראלי, מוגש כסדרת יחידות למידה אינטראקטיביות —
+      כל יחידה היא סיפור מונפש קצר עם קריינות מלאה, שמזקק את תובנות המחקר המרכזיות.
+    </p>
+    <div class="hero-meta reveal d3">
+      <span><i></i>5 יחידות בסדרה</span>
+      <span><i></i>10 שקופיות ביחידה</span>
+      <span><i></i>קריינות מלאה בעברית</span>
+    </div>
+  </section>
+
+  <main class="grid">
+
+    <a class="card reveal d3" href="unit-01.html">
+      <div class="thumb"><img src="assets/previews/unit-01.jpg" alt="" loading="lazy"
+           onerror="this.outerHTML='&lt;img class=&quot;mark&quot; src=&quot;assets/ngg-mark-white.png&quot; alt=&quot;&quot;&gt;'"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="unit-tag">UNIT 01</span>
+          <span class="badge live">זמין לצפייה</span>
+        </div>
+        <h2>כש-AI מקצר את העבודה — מה קורה למחיר?</h2>
+        <p>פרדוקס הפרודוקטיביות של שירותי הידע: מה קורה למודל השעה החייבת כשהעבודה מתקצרת, ואילו מסלולי תמחור נפתחים במקומו.</p>
+        <span class="card-cta">כניסה ליחידה
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <a class="card reveal d4" href="unit-02.html">
+      <div class="thumb"><img src="assets/previews/unit-02.jpg" alt="" loading="lazy"
+           onerror="this.outerHTML='&lt;img class=&quot;mark&quot; src=&quot;assets/ngg-mark-white.png&quot; alt=&quot;&quot;&gt;'"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="unit-tag">UNIT 02</span>
+          <span class="badge live">זמין לצפייה</span>
+        </div>
+        <h2>מתוצרים חד־פעמיים לנכסים מתמשכים</h2>
+        <p>איך תהליך ייעוץ ולמידה יכול להשאיר אחריו לא מסמך — אלא מערכת שממשיכה להעריך, לתרגל, למדוד ולייצר ערך.</p>
+        <span class="card-cta">כניסה ליחידה
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!--
+      תבנית להוספת יחידה חדשה:
+      1) מעתיקים את אחד מבלוקי ה-<a class="card"> הפעילים שלמעלה.
+      2) מעדכנים href (למשל unit-03.html), UNIT 03, כותרת, תיאור ותמונת תצוגה.
+      3) מוחקים את בלוק ה"בקרוב" המקביל שלמטה.
+    -->
+
+    <div class="card soon-card reveal d5">
+      <div class="thumb"><img class="mark" src="assets/ngg-mark-white.png" alt=""></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="unit-tag">UNIT 03</span>
+          <span class="badge soon">בקרוב</span>
+        </div>
+        <h2>יחידה בהכנה</h2>
+        <p>תוכן היחידה יתפרסם בקרוב.</p>
+      </div>
+    </div>
+
+    <div class="card soon-card reveal d6">
+      <div class="thumb"><img class="mark" src="assets/ngg-mark-white.png" alt=""></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="unit-tag">UNIT 04</span>
+          <span class="badge soon">בקרוב</span>
+        </div>
+        <h2>יחידה בהכנה</h2>
+        <p>תוכן היחידה יתפרסם בקרוב.</p>
+      </div>
+    </div>
+
+    <div class="card soon-card reveal d7">
+      <div class="thumb"><img class="mark" src="assets/ngg-mark-white.png" alt=""></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="unit-tag">UNIT 05</span>
+          <span class="badge soon">בקרוב</span>
+        </div>
+        <h2>יחידה בהכנה</h2>
+        <p>תוכן היחידה יתפרסם בקרוב.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>© NGG 2026 · סדרת מחקרי עומק</span>
+    <span class="foot-en">NGG DEEP RESEARCH</span>
+  </footer>
+
+</div>
+
+</body>
+</html>
