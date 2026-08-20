@@ -63,7 +63,7 @@ export function DetailedMetrics({ snapshot }: { snapshot: AnalyticsSnapshot | nu
       </div>
 
       <p className="mt-3.5 text-[11.5px] leading-[1.6] text-dim">
-        מדד שמופיע כדמדד שמופיע כד
+        מדד שמופיע כ״—״ אינו אפס: הנתון פשוט לא זמין או טרם הגיע מ-YouTube.
       </p>
     </section>
   );
