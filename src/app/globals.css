@@ -1,0 +1,152 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens transcribed from the supplied Claude Design hi-fi
+ * ("Layla Lavan Analytics - Hi-Fi", artboards 1a-1e).
+ * Values are intentionally verbatim so the implementation stays pixel-faithful.
+ * Do not introduce ad-hoc hex values in components — extend this scale instead.
+ */
+@theme {
+  /* Surfaces, dark to light */
+  --color-canvas: #0a0a0c;
+  --color-surface: #0c0c0f;
+  --color-panel-alt: #0e0e12;
+  --color-panel-deep: #0f0f13;
+  --color-panel: #101015;
+  --color-panel-head: #121217;
+  --color-inset: #17171c;
+  --color-chip: #141419;
+  --color-chip-strong: #1c1c22;
+  --color-nav-active: #17171c;
+
+  /* Hairlines and borders */
+  --color-line: #1a1a20;
+  --color-line-soft: #1c1c22;
+  --color-hair: #1e1e25;
+  --color-line-strong: #202027;
+  --color-edge: #22222a;
+  --color-edge-2: #26262e;
+  --color-edge-3: #2e2e37;
+  --color-edge-4: #33333d;
+  --color-bar: #33333d;
+
+  /* Foreground ramp */
+  --color-fg: #f4f4f2;
+  --color-fg-2: #e6e6e4;
+  --color-fg-3: #c8c8ce;
+  --color-fg-4: #c3c7ce;
+  --color-muted: #a8a8b0;
+  --color-muted-2: #8a8a93;
+  --color-dim: #6e6e78;
+  --color-dim-2: #5c5c66;
+  --color-dim-3: #4c4c57;
+
+  /* Accent + semantic */
+  --color-accent: #e01521;
+  --color-accent-deep: #8e1520;
+  --color-accent-soft: #b9414a;
+  --color-positive: #57c98a;
+  --color-negative: #e0575f;
+  --color-neutral-bar: #2e2e37;
+  --color-accent-ember: #5a2028;
+  --color-bar-low: #22222a;
+  --color-bar-mid: #2a2a33;
+  --color-bar-high: #33333d;
+
+  /* Typography — Rubik for figures/headings, Assistant for Hebrew prose,
+     IBM Plex Mono for the small uppercase metric labels. */
+  --font-display: var(--font-rubik), system-ui, sans-serif;
+  --font-sans: var(--font-assistant), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, Menlo, monospace;
+
+  --radius-card: 10px;
+  --radius-panel: 9px;
+  --radius-control: 7px;
+  --radius-chip: 6px;
+}
+
+html,
+body {
+  background: var(--color-canvas);
+  color: var(--color-fg);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Figures, percentages and dates read left-to-right even inside RTL prose. */
+.num {
+  font-family: var(--font-display);
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Small uppercase Latin metric labels from the design. */
+.metric-label {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-transform: uppercase;
+}
+
+/* Titles may mix Hebrew and English; isolate so punctuation lands correctly. */
+.bidi-isolate {
+  unicode-bidi: isolate;
+}
+
+.hero-glow {
+  background: radial-gradient(950px 300px at 88% -30%, rgba(224, 21, 33, 0.16), transparent 70%);
+}
+
+.hero-glow-sm {
+  background: radial-gradient(800px 260px at 85% -40%, rgba(224, 21, 33, 0.13), transparent 70%);
+}
+
+.connect-glow {
+  background-image: radial-gradient(600px 240px at 50% 0%, rgba(224, 21, 33, 0.16), transparent 70%);
+}
+
+/* Thumbnail placeholder, matching the design's 16:9 gradient blocks. */
+.thumb-placeholder {
+  background: radial-gradient(120% 90% at 50% 110%, rgba(224, 21, 33, 0.3), #0d0d11 62%);
+}
+
+.thumb-placeholder-muted {
+  background: radial-gradient(120% 90% at 50% 110%, rgba(120, 124, 134, 0.22), #0d0d11 62%);
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-inset);
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.045), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after {
+    animation: none;
+  }
+}
+
+::selection {
+  background: rgba(224, 21, 33, 0.32);
+}
