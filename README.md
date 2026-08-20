@@ -29,13 +29,16 @@ system-font fallbacks if unavailable.
 
 ### GitHub Pages (active)
 
-`.github/workflows/deploy-pages.yml` publishes the repository root to GitHub
-Pages on every push to the deployment branches. Site URL:
+`.github/workflows/deploy-pages.yml` copies the repository root to the
+`gh-pages` branch on every push to the deployment branches; GitHub Pages
+serves that branch. Site URL:
 
 **https://ngg-global.github.io/NGGresearch/**
 
-If a run ever fails on "Pages not enabled": Settings → Pages → Build and
-deployment → Source: **GitHub Actions**, then re-run the workflow.
+If the URL ever returns 404, Pages needs its one-time activation: Settings →
+Pages → Build and deployment → Source: **Deploy from a branch** → Branch:
+**gh-pages** / **(root)** → Save. From then on every push publishes
+automatically.
 
 ### Vercel (optional alternative)
 
