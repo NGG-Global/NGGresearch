@@ -1,0 +1,3 @@
+32e9c064b0bbafa37ee39c970cc75684730a0994fbdb75037b007d0e755dd032  public/brand/channel-avatar.png
+245ba905b23560c4e444ad76acb3c5b0e32737523c39885816cae2a685af856d  public/brand/channel-avatar-sm.png
+245ba905b23560c4e444ad76acb3c5b0e32737523c39885816cae2a685af856d  src/app/icon.png
