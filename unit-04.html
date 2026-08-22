@@ -83,7 +83,7 @@ a:hover{color:#ec2a8c}
         <div style="position:absolute;left:1387px;top:508px;width:26px;height:26px;border-radius:50%;background:#1c1c26;{{wk.s}}"></div>
       </sc-for>
       <sc-for list="{{s1.pile}}" as="pl" hint-placeholder-count="0">
-        <div style="position:absolute;left:1430px;top:508px;width:24px;height:24px;border-radius:50%;background:#1c1c26;border:3px solid #2f8577;box-sizing:border-box;{{pl.s}}"></div>
+        <div style="position:absolute;left:0;top:0;{{pl.s}}"><div style="width:24px;height:24px;border-radius:50%;background:#1c1c26;border:3px solid #2f8577;box-sizing:border-box;animation:jamShake 1.4s ease infinite"></div></div>
       </sc-for>
     </div>
     <div dir="ltr" style="position:absolute;left:150px;top:160px;background:#fbfaf7;border:1.5px solid #2f8577;border-radius:10px;padding:11px 20px;font-size:16px;font-weight:700;color:#1c1c26;transform:rotate(-3deg);{{s1.lic}}">10,000 רישיונות AI <span style="color:#2f8577">✓</span></div>
@@ -609,7 +609,7 @@ class Component extends DCLogic {
       if(lic)st+='box-shadow:0 0 0 3.5px #2f8577;';
       return {s:st};
     });
-    const pile=this.s1P.map((p)=>({s:(F(1,'jam')&&!F(1,'q')?'opacity:1;':'opacity:0;')+'transform:translate('+(p.x-1430)+'px,'+(p.y-508)+'px);transition:opacity .6s ease '+p.dl+'ms;animation:jamShake 1.4s ease infinite'}));
+    const pile=this.s1P.map((p)=>({s:(F(1,'jam')&&!F(1,'q')?'opacity:1;':'opacity:0;')+'transform:translate('+p.x+'px,'+p.y+'px);transition:opacity .6s ease '+p.dl+'ms'}));
     const s1cam=F(1,'wide')?'transform:scale(.86) translateY(18px);transition:transform 2.6s '+E:'transform:scale(1);transition:transform 2.6s '+E;
     // ─ scene 2
     const coins=this.s2C.map((c)=>({s:F(2,'jar')?'left:'+c.x+'px;top:'+c.y+'px;animation:coinDrop 1s '+this.EO+' '+c.dl+'ms forwards;opacity:0':'left:'+c.x+'px;top:'+c.y+'px;opacity:0'}));
