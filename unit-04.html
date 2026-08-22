@@ -71,19 +71,19 @@ a:hover{color:#ec2a8c}
   </div>
   <div style="position:absolute;inset:0;{{s1.cam}}">
     <div style="position:absolute;inset:0;{{s1.mach}}">
-      <div style="position:absolute;left:250px;top:520px;width:1200px;height:3px;background:#c9c5ba"></div>
-      <div style="position:absolute;left:1240px;top:452px;background:#fbfaf7;border:1.5px solid #b9b5ab;border-radius:9px;padding:9px 22px;font-size:14.5px;font-weight:700;color:#56555f">קליטה</div>
-      <div style="position:absolute;left:960px;top:452px;background:#fbfaf7;border:1.5px solid #b9b5ab;border-radius:9px;padding:9px 22px;font-size:14.5px;font-weight:700;color:#56555f">עיבוד</div>
-      <div style="position:absolute;left:560px;top:452px;background:#fbfaf7;border:1.5px solid #1c1c26;border-radius:9px;padding:9px 22px;font-size:14.5px;font-weight:700;color:#1c1c26">אישור</div>
-      <div style="position:absolute;left:300px;top:452px;background:#fbfaf7;border:1.5px solid #b9b5ab;border-radius:9px;padding:9px 22px;font-size:14.5px;font-weight:700;color:#56555f">מסירה</div>
-      <div style="position:absolute;left:724px;top:468px;width:10px;height:44px;background:#1c1c26;border-radius:3px"></div>
-      <div style="position:absolute;left:724px;top:540px;width:10px;height:44px;background:#1c1c26;border-radius:3px"></div>
-      <div style="position:absolute;left:700px;top:604px;font-size:12.5px;color:#8a8892;white-space:nowrap">צוואר בקבוק</div>
+      <div style="position:absolute;left:200px;top:520px;width:1200px;height:3px;background:#c9c5ba"></div>
+      <div style="position:absolute;left:1242px;top:452px;width:96px;box-sizing:border-box;text-align:center;background:#fbfaf7;border:1.5px solid #b9b5ab;border-radius:9px;padding:9px 0;font-size:14.5px;font-weight:700;color:#56555f">קליטה</div>
+      <div style="position:absolute;left:962px;top:452px;width:96px;box-sizing:border-box;text-align:center;background:#fbfaf7;border:1.5px solid #b9b5ab;border-radius:9px;padding:9px 0;font-size:14.5px;font-weight:700;color:#56555f">עיבוד</div>
+      <div style="position:absolute;left:542px;top:452px;width:96px;box-sizing:border-box;text-align:center;background:#fbfaf7;border:1.5px solid #1c1c26;border-radius:9px;padding:9px 0;font-size:14.5px;font-weight:700;color:#1c1c26">אישור</div>
+      <div style="position:absolute;left:262px;top:452px;width:96px;box-sizing:border-box;text-align:center;background:#fbfaf7;border:1.5px solid #b9b5ab;border-radius:9px;padding:9px 0;font-size:14.5px;font-weight:700;color:#56555f">מסירה</div>
+      <div style="position:absolute;left:795px;top:468px;width:10px;height:44px;background:#1c1c26;border-radius:3px"></div>
+      <div style="position:absolute;left:795px;top:540px;width:10px;height:44px;background:#1c1c26;border-radius:3px"></div>
+      <div style="position:absolute;left:700px;top:604px;width:200px;text-align:center;font-size:12.5px;color:#8a8892;white-space:nowrap">צוואר בקבוק</div>
       <sc-for list="{{s1.workers}}" as="wk" hint-placeholder-count="0">
-        <div style="position:absolute;left:1430px;top:508px;width:26px;height:26px;border-radius:50%;background:#1c1c26;{{wk.s}}"></div>
+        <div style="position:absolute;left:1387px;top:508px;width:26px;height:26px;border-radius:50%;background:#1c1c26;{{wk.s}}"></div>
       </sc-for>
       <sc-for list="{{s1.pile}}" as="pl" hint-placeholder-count="0">
-        <div style="position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;background:#1c1c26;border:3px solid #2f8577;box-sizing:border-box;{{pl.s}}"></div>
+        <div style="position:absolute;left:0;top:0;{{pl.s}}"><div style="width:24px;height:24px;border-radius:50%;background:#1c1c26;border:3px solid #2f8577;box-sizing:border-box;animation:jamShake 1.4s ease infinite"></div></div>
       </sc-for>
     </div>
     <div dir="ltr" style="position:absolute;left:150px;top:160px;background:#fbfaf7;border:1.5px solid #2f8577;border-radius:10px;padding:11px 20px;font-size:16px;font-weight:700;color:#1c1c26;transform:rotate(-3deg);{{s1.lic}}">10,000 רישיונות AI <span style="color:#2f8577">✓</span></div>
@@ -95,7 +95,7 @@ a:hover{color:#ec2a8c}
       <div dir="ltr" style="background:rgba(251,250,247,.9);border:1px solid #ddd9cf;border-radius:8px;padding:9px 16px;font-size:14.5px;color:#56555f;text-align:right;{{s1.k4}}">איכות <span style="font-weight:800;color:#c9752b">→</span></div>
     </div>
   </div>
-  <div style="position:absolute;left:0;right:0;top:360px;text-align:center;{{s1.q}}">
+  <div style="position:absolute;left:0;right:0;top:328px;text-align:center;{{s1.q}}">
     <div style="font-family:'Frank Ruhl Libre',serif;font-size:72px;font-weight:900;color:#1c1c26">אז מה בעצם השתנה?</div>
     <div style="width:130px;height:4px;background:#ec2a8c;margin:26px auto 0;border-radius:2px"></div>
   </div>
@@ -107,15 +107,15 @@ a:hover{color:#ec2a8c}
     <div style="font-size:15px;font-weight:700;color:#ec2a8c;letter-spacing:.06em">02 · הראיות</div>
     <div style="margin-top:8px;font-size:36px;font-weight:800;color:#1c1c26;line-height:1.3">חסכנו זמן. אבל המערכת כמעט לא זזה.</div>
   </div>
-  <div dir="ltr" style="position:absolute;left:1120px;top:230px;text-align:center;{{s2.n1}}">
+  <div dir="ltr" style="position:absolute;left:1120px;top:230px;width:220px;text-align:center;{{s2.n1}}">
     <div style="font-family:'Frank Ruhl Libre',serif;font-size:74px;font-weight:900;color:#1c1c26;line-height:1">7,137</div>
     <div dir="rtl" style="margin-top:6px;font-size:15px;color:#6d6c76">עובדי ידע בניסוי</div>
   </div>
-  <div dir="ltr" style="position:absolute;left:1180px;top:400px;text-align:center;{{s2.n2}}">
+  <div dir="ltr" style="position:absolute;left:1120px;top:400px;width:220px;text-align:center;{{s2.n2}}">
     <div style="font-family:'Frank Ruhl Libre',serif;font-size:54px;font-weight:900;color:#6d6c76;line-height:1">66</div>
     <div dir="rtl" style="margin-top:6px;font-size:15px;color:#6d6c76">חברות</div>
   </div>
-  <div style="position:absolute;left:640px;top:250px;width:250px;{{s2.jar}}">
+  <div style="position:absolute;left:675px;top:250px;width:250px;{{s2.jar}}">
     <div style="position:relative;width:250px;height:270px;border:2px solid #1c1c26;border-top:none;border-radius:0 0 22px 22px;overflow:hidden">
       <div style="position:absolute;left:0;right:0;bottom:0;background:rgba(47,133,119,.16);{{s2.fill}}"></div>
       <sc-for list="{{s2.coins}}" as="cn" hint-placeholder-count="0">
@@ -124,20 +124,20 @@ a:hover{color:#ec2a8c}
     </div>
     <div style="margin-top:14px;text-align:center;font-size:16px;font-weight:700;color:#1c1c26">כ־2 שעות בשבוע נחסכו</div>
   </div>
-  <div style="position:absolute;left:150px;top:250px;width:400px;{{s2.p21}}">
+  <div style="position:absolute;left:170px;top:250px;width:400px;{{s2.p21}}">
     <div dir="ltr" style="font-family:'Frank Ruhl Libre',serif;font-size:96px;font-weight:900;color:#ec2a8c;line-height:1;text-align:center">21%</div>
     <div style="margin-top:10px;text-align:center;font-size:15.5px;color:#56555f;line-height:1.6">בלבד עיצבו מחדש לפחות חלק<br>מהתהליכים באופן יסודי</div>
   </div>
-  <div style="position:absolute;left:250px;top:600px;width:1100px;{{s2.same}}">
+  <div style="position:absolute;left:330px;top:672px;width:1100px;{{s2.same}}">
     <div style="position:absolute;left:0;top:52px;width:640px;height:3px;background:#c9c5ba"></div>
-    <div style="position:absolute;left:520px;top:22px;background:#fbfaf7;border:1px solid #b9b5ab;border-radius:8px;padding:7px 16px;font-size:13px;color:#56555f">קליטה</div>
-    <div style="position:absolute;left:300px;top:22px;background:#fbfaf7;border:1px solid #b9b5ab;border-radius:8px;padding:7px 16px;font-size:13px;color:#56555f">עיבוד</div>
-    <div style="position:absolute;left:80px;top:22px;background:#fbfaf7;border:1px solid #b9b5ab;border-radius:8px;padding:7px 16px;font-size:13px;color:#56555f">אישור</div>
+    <div style="position:absolute;left:520px;top:2px;background:#fbfaf7;border:1px solid #b9b5ab;border-radius:8px;padding:7px 16px;font-size:13px;color:#56555f">קליטה</div>
+    <div style="position:absolute;left:300px;top:2px;background:#fbfaf7;border:1px solid #b9b5ab;border-radius:8px;padding:7px 16px;font-size:13px;color:#56555f">עיבוד</div>
+    <div style="position:absolute;left:80px;top:2px;background:#fbfaf7;border:1px solid #b9b5ab;border-radius:8px;padding:7px 16px;font-size:13px;color:#56555f">אישור</div>
     <div style="position:absolute;left:600px;top:40px;width:22px;height:22px;border-radius:50%;background:#1c1c26;animation:miniRun 9s linear infinite"></div>
     <div style="position:absolute;left:640px;top:40px;width:22px;height:22px;border-radius:50%;background:#1c1c26;animation:miniRun 9s linear infinite;animation-delay:-4.5s"></div>
     <div style="position:absolute;left:690px;top:44px;font-size:15.5px;color:#6d6c76;white-space:nowrap">אבל התהליך נשאר כמעט אותו תהליך</div>
   </div>
-  <div style="position:absolute;left:220px;top:492px;width:720px;border:1.5px dashed #b9b5ab;border-radius:12px;padding:12px 18px;display:flex;gap:10px;justify-content:center;background:rgba(251,250,247,.6);{{s2.cut}}">
+  <div style="position:absolute;left:421px;top:580px;width:720px;border:1.5px dashed #b9b5ab;border-radius:12px;padding:12px 18px;display:flex;gap:10px;justify-content:center;background:rgba(251,250,247,.6);{{s2.cut}}">
     <span style="font-size:12.5px;color:#8a8892;border:1px solid #ddd9cf;border-radius:6px;padding:5px 12px">שלב</span>
     <span style="font-size:12.5px;color:#8a8892;border:1px solid #ddd9cf;border-radius:6px;padding:5px 12px">העברה</span>
     <span style="font-size:12.5px;color:#8a8892;border:1px solid #ddd9cf;border-radius:6px;padding:5px 12px">שלב</span>
@@ -157,19 +157,19 @@ a:hover{color:#ec2a8c}
   <sc-for list="{{s3.blocks}}" as="bk" hint-placeholder-count="0">
     <div style="position:absolute;left:0;top:0;background:#fbfaf7;border:1px solid #c9c5ba;border-radius:7px;padding:7px 14px;font-size:13px;font-weight:600;color:#56555f;white-space:nowrap;{{bk.s}}">{{bk.t}}</div>
   </sc-for>
-  <div style="position:absolute;left:1010px;top:400px;width:150px;text-align:center;{{s3.g1}}">
+  <div style="position:absolute;left:975px;top:400px;width:150px;text-align:center;{{s3.g1}}">
     <div style="width:12px;height:76px;background:#1c1c26;border-radius:4px;margin:0 auto"></div>
     <div style="margin-top:8px;font-size:14px;font-weight:700;color:#1c1c26">מורכבות</div>
   </div>
-  <div style="position:absolute;left:760px;top:400px;width:150px;text-align:center;{{s3.g2}}">
+  <div style="position:absolute;left:725px;top:400px;width:150px;text-align:center;{{s3.g2}}">
     <div style="width:12px;height:76px;background:#1c1c26;border-radius:4px;margin:0 auto"></div>
     <div style="margin-top:8px;font-size:14px;font-weight:700;color:#1c1c26">סיכון</div>
   </div>
-  <div style="position:absolute;left:510px;top:400px;width:150px;text-align:center;{{s3.g3}}">
+  <div style="position:absolute;left:475px;top:400px;width:150px;text-align:center;{{s3.g3}}">
     <div style="width:12px;height:76px;background:#1c1c26;border-radius:4px;margin:0 auto"></div>
     <div style="margin-top:8px;font-size:14px;font-weight:700;color:#1c1c26">שיקול דעת</div>
   </div>
-  <div style="position:absolute;left:850px;top:570px;width:420px;border-radius:14px;border:1.5px solid #ec2a8c;background:rgba(251,250,247,.9);padding:18px 22px;text-align:right;{{s3.hu}}">
+  <div style="position:absolute;left:884px;top:570px;width:420px;border-radius:14px;border:1.5px solid #ec2a8c;background:rgba(251,250,247,.9);padding:18px 22px;text-align:right;{{s3.hu}}">
     <div style="font-size:17px;font-weight:800;color:#ec2a8c">אדם</div>
     <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end">
       <span style="border:1px solid #e6a9c9;border-radius:999px;padding:5px 14px;font-size:13.5px;color:#1c1c26">שיקול דעת</span>
@@ -178,7 +178,7 @@ a:hover{color:#ec2a8c}
       <span style="border:1px solid #e6a9c9;border-radius:999px;padding:5px 14px;font-size:13.5px;color:#1c1c26">אחריות</span>
     </div>
   </div>
-  <div style="position:absolute;left:330px;top:570px;width:420px;border-radius:14px;border:1.5px solid #2f8577;background:rgba(251,250,247,.9);padding:18px 22px;text-align:right;{{s3.ai}}">
+  <div style="position:absolute;left:249px;top:570px;width:420px;border-radius:14px;border:1.5px solid #2f8577;background:rgba(251,250,247,.9);padding:18px 22px;text-align:right;{{s3.ai}}">
     <div dir="ltr" style="text-align:right;font-size:17px;font-weight:800;color:#2f8577">AI</div>
     <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end">
       <span style="border:1px solid #9ccec5;border-radius:999px;padding:5px 14px;font-size:13.5px;color:#1c1c26">מובנה</span>
@@ -186,11 +186,11 @@ a:hover{color:#ec2a8c}
       <span style="border:1px solid #9ccec5;border-radius:999px;padding:5px 14px;font-size:13.5px;color:#1c1c26">קל לבדיקה</span>
     </div>
   </div>
-  <div style="position:absolute;left:50%;top:586px;transform:translateX(-50%);text-align:center;{{s3.stuck}}">
+  <div style="position:absolute;left:50%;top:586px;transform:translateX(-50%)"><div style="text-align:center;{{s3.stuck}}">
     <div style="background:#fbfaf7;border:1.5px solid #c9752b;border-radius:8px;padding:8px 18px;font-size:13.5px;font-weight:700;color:#c9752b;transform:rotate(-2deg)">חריג מורכב</div>
     <div style="margin-top:8px;background:#fbfaf7;border:1.5px solid #c9752b;border-radius:8px;padding:8px 18px;font-size:13.5px;font-weight:700;color:#c9752b;transform:rotate(2deg)">המלצה רגישה</div>
     <div style="margin-top:10px;font-size:12.5px;color:#c9752b">צריך כלל ברור</div>
-  </div>
+  </div></div>
 </div>
 
 <!-- ══ SCENE 4 · IKEA מול Klarna ══ -->
@@ -202,7 +202,7 @@ a:hover{color:#ec2a8c}
   <div style="position:absolute;left:50%;top:200px;width:2px;height:480px;background:#c9c5ba;{{s4.split}}"></div>
   <div style="position:absolute;left:830px;top:206px;width:620px;{{s4.split}}">
     <div dir="ltr" style="text-align:center;font-size:26px;font-weight:900;color:#1c1c26">IKEA</div>
-    <div dir="ltr" style="position:absolute;left:50%;top:52px;transform:translateX(-50%);background:#fbfaf7;border:1.5px solid #2f8577;border-radius:9px;padding:8px 22px;font-family:ui-monospace,monospace;font-size:15px;font-weight:700;color:#2f8577;{{s4.mod}}">AI</div>
+    <div style="position:absolute;left:50%;top:52px;transform:translateX(-50%)"><div dir="ltr" style="background:#fbfaf7;border:1.5px solid #2f8577;border-radius:9px;padding:8px 22px;font-family:ui-monospace,monospace;font-size:15px;font-weight:700;color:#2f8577;{{s4.mod}}">AI</div></div>
     <div style="position:absolute;left:0;right:0;top:120px;display:flex;justify-content:center;flex-wrap:wrap;gap:6px;width:340px;margin:0 auto;{{s4.dotsA}}">
       <span style="width:15px;height:15px;border-radius:50%;background:#ec2a8c;opacity:.85"></span><span style="width:15px;height:15px;border-radius:50%;background:#ec2a8c;opacity:.85"></span><span style="width:15px;height:15px;border-radius:50%;background:#ec2a8c;opacity:.85"></span><span style="width:15px;height:15px;border-radius:50%;background:#ec2a8c;opacity:.85"></span><span style="width:15px;height:15px;border-radius:50%;background:#ec2a8c;opacity:.85"></span><span style="width:15px;height:15px;border-radius:50%;background:#ec2a8c;opacity:.85"></span><span style="width:15px;height:15px;border-radius:50%;background:#ec2a8c;opacity:.85"></span><span style="width:15px;height:15px;border-radius:50%;background:#ec2a8c;opacity:.85"></span><span style="width:15px;height:15px;border-radius:50%;background:#ec2a8c;opacity:.85"></span><span style="width:15px;height:15px;border-radius:50%;background:#ec2a8c;opacity:.85"></span><span style="width:15px;height:15px;border-radius:50%;background:#ec2a8c;opacity:.85"></span><span style="width:15px;height:15px;border-radius:50%;background:#ec2a8c;opacity:.85"></span>
     </div>
@@ -216,7 +216,7 @@ a:hover{color:#ec2a8c}
   </div>
   <div style="position:absolute;left:150px;top:206px;width:620px;{{s4.split}}">
     <div dir="ltr" style="text-align:center;font-size:26px;font-weight:900;color:#1c1c26">Klarna</div>
-    <div dir="ltr" style="position:absolute;left:50%;top:52px;transform:translateX(-50%);background:#fbfaf7;border:1.5px solid #2f8577;border-radius:9px;padding:8px 22px;font-family:ui-monospace,monospace;font-size:15px;font-weight:700;color:#2f8577;{{s4.mod}}">AI</div>
+    <div style="position:absolute;left:50%;top:52px;transform:translateX(-50%)"><div dir="ltr" style="background:#fbfaf7;border:1.5px solid #2f8577;border-radius:9px;padding:8px 22px;font-family:ui-monospace,monospace;font-size:15px;font-weight:700;color:#2f8577;{{s4.mod}}">AI</div></div>
     <div style="position:absolute;left:0;right:0;top:120px;display:flex;justify-content:center;gap:6px;width:260px;margin:0 auto;{{s4.dotsB}}">
       <span style="width:15px;height:15px;border-radius:50%;background:#8a8892"></span><span style="width:15px;height:15px;border-radius:50%;background:#8a8892"></span><span style="width:15px;height:15px;border-radius:50%;background:#8a8892"></span><span style="width:15px;height:15px;border-radius:50%;background:#8a8892"></span><span style="width:15px;height:15px;border-radius:50%;background:#8a8892"></span><span style="width:15px;height:15px;border-radius:50%;background:#8a8892"></span><span style="width:15px;height:15px;border-radius:50%;background:#8a8892"></span>
     </div>
@@ -317,11 +317,11 @@ a:hover{color:#ec2a8c}
   <sc-for list="{{s7.dots}}" as="dt" hint-placeholder-count="0">
     <div style="position:absolute;left:0;top:0;width:16px;height:16px;border-radius:50%;background:#2f8577;opacity:.75;{{dt.s}}"></div>
   </sc-for>
-  <div dir="ltr" style="position:absolute;left:1120px;top:250px;text-align:center;{{s7.n57}}">
+  <div dir="ltr" style="position:absolute;right:150px;top:250px;text-align:center;{{s7.n57}}">
     <div style="font-family:'Frank Ruhl Libre',serif;font-size:104px;font-weight:900;color:#1c1c26;line-height:1">57%</div>
     <div dir="rtl" style="margin-top:8px;font-size:15px;color:#6d6c76;max-width:300px">משתמשים ב-AI בעבודה לפחות פעם בשבוע</div>
   </div>
-  <div style="position:absolute;left:280px;top:352px;width:620px;{{s7.ceil}}">
+  <div style="position:absolute;left:230px;top:352px;width:620px;{{s7.ceil}}">
     <div style="height:12px;border-radius:6px;background:repeating-linear-gradient(45deg,#c9752b 0 14px,#e0b98f 14px 28px)"></div>
     <div style="margin-top:8px;font-size:14.5px;color:#c9752b;font-weight:700;text-align:center">40% — אין מדיניות ברורה, או שלא יודעים אם קיימת</div>
   </div>
@@ -329,21 +329,21 @@ a:hover{color:#ec2a8c}
     <div style="font-family:'Frank Ruhl Libre',serif;font-size:56px;font-weight:900;color:#6d6c76;line-height:1">~75%</div>
     <div dir="rtl" style="margin-top:6px;font-size:14px;color:#6d6c76;max-width:220px">נשענים בעיקר על גרסאות חינמיות</div>
   </div>
-  <div dir="ltr" style="position:absolute;left:560px;top:232px;transform:rotate(-5deg);border:2.5px solid #1c1c26;border-radius:8px;padding:8px 20px;background:rgba(251,250,247,.94);font-size:19px;font-weight:800;color:#1c1c26;{{s7.stop}}">שימוש ≠ טרנספורמציה</div>
-  <div style="position:absolute;left:330px;top:430px;width:520px">
+  <div dir="ltr" style="position:absolute;left:675px;top:232px;transform:rotate(-5deg);border:2.5px solid #1c1c26;border-radius:8px;padding:8px 20px;background:rgba(251,250,247,.94);font-size:19px;font-weight:800;color:#1c1c26;{{s7.stop}}">שימוש ≠ טרנספורמציה</div>
+  <div style="position:absolute;left:280px;top:430px;width:520px">
     <div style="border:1.5px solid #1c1c26;border-radius:9px;background:#fbfaf7;padding:9px 18px;font-size:14.5px;font-weight:700;color:#1c1c26;text-align:right;{{s7.l1}}">גישה מאושרת ומאובטחת</div>
     <div style="margin-top:8px;border:1.5px solid #1c1c26;border-radius:9px;background:#fbfaf7;padding:9px 18px;font-size:14.5px;font-weight:700;color:#1c1c26;text-align:right;{{s7.l2}}">אחריות ומדיניות ברורה</div>
     <div style="margin-top:8px;border:1.5px solid #1c1c26;border-radius:9px;background:#fbfaf7;padding:9px 18px;font-size:14.5px;font-weight:700;color:#1c1c26;text-align:right;{{s7.l3}}">שגרות ניהול</div>
     <div style="margin-top:8px;border:1.5px solid #ec2a8c;border-radius:9px;background:#fbfaf7;padding:9px 18px;font-size:14.5px;font-weight:700;color:#ec2a8c;text-align:right;{{s7.l4}}">מדידה</div>
   </div>
-  <div style="position:absolute;left:950px;top:472px;width:420px;{{s7.dashA}}">
+  <div style="position:absolute;left:900px;top:472px;width:420px;{{s7.dashA}}">
     <div style="border:1.5px solid #c9c5ba;border-radius:12px;background:#fbfaf7;padding:16px 20px;text-align:right">
       <div style="font-size:13px;color:#8a8892">לוח מדדים</div>
       <div style="margin-top:6px;font-size:16.5px;font-weight:700;color:#56555f">משתמשים פעילים · כמות פרומפטים</div>
     </div>
     <div dir="ltr" style="position:absolute;left:-16px;top:-14px;background:#c9752b;color:#fff;border-radius:8px;padding:6px 14px;font-size:14px;font-weight:800;transform:rotate(-6deg)">אז מה?</div>
   </div>
-  <div style="position:absolute;left:950px;top:472px;width:420px;{{s7.dashB}}">
+  <div style="position:absolute;left:900px;top:472px;width:420px;{{s7.dashB}}">
     <div style="border:2px solid #ec2a8c;border-radius:12px;background:#fbfaf7;padding:16px 20px;text-align:right">
       <div style="font-size:13px;color:#ec2a8c;font-weight:700">מה מודדים באמת</div>
       <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:7px;justify-content:flex-end">
@@ -609,7 +609,7 @@ class Component extends DCLogic {
       if(lic)st+='box-shadow:0 0 0 3.5px #2f8577;';
       return {s:st};
     });
-    const pile=this.s1P.map((p)=>({s:(F(1,'jam')&&!F(1,'q')?'opacity:1;':'opacity:0;')+'transform:translate('+(p.x-1430)+'px,'+(p.y-508)+'px);transition:opacity .6s ease '+p.dl+'ms;animation:jamShake 1.4s ease infinite'}));
+    const pile=this.s1P.map((p)=>({s:(F(1,'jam')&&!F(1,'q')?'opacity:1;':'opacity:0;')+'transform:translate('+p.x+'px,'+p.y+'px);transition:opacity .6s ease '+p.dl+'ms'}));
     const s1cam=F(1,'wide')?'transform:scale(.86) translateY(18px);transition:transform 2.6s '+E:'transform:scale(1);transition:transform 2.6s '+E;
     // ─ scene 2
     const coins=this.s2C.map((c)=>({s:F(2,'jar')?'left:'+c.x+'px;top:'+c.y+'px;animation:coinDrop 1s '+this.EO+' '+c.dl+'ms forwards;opacity:0':'left:'+c.x+'px;top:'+c.y+'px;opacity:0'}));
