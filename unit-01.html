@@ -432,6 +432,13 @@ a:hover{color:#ec2a8c}
         <sc-if value="{{muted}}" hint-placeholder-val="{{false}}"><g><line x1="16" y1="9" x2="22" y2="15"></line><line x1="22" y1="9" x2="16" y2="15"></line></g></sc-if>
       </svg>
     </button>
+    <button onClick="{{onCC}}" title="כתוביות" aria-label="כתוביות" dir="ltr" style="width:42px;height:42px;border-radius:50%;background:transparent;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;font-family:inherit;font-size:11.5px;font-weight:800;letter-spacing:.03em;{{ui.ccS}}">CC</button>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:86px;z-index:6;pointer-events:none;{{ui.capWrapS}}">
+    <div style="max-width:900px;margin:0 auto;padding:0 40px">
+      <div style="display:inline-block;width:100%;box-sizing:border-box;background:rgba(10,10,16,.84);color:#f4f4f6;border-radius:10px;padding:11px 22px;font-size:17px;line-height:1.5;text-align:center;text-wrap:balance">{{capTxt}}</div>
+    </div>
   </div>
 
   <div dir="ltr" style="position:absolute;left:50%;bottom:40px;transform:translateX(-50%);z-index:6;display:flex;align-items:center;gap:14px;{{ui.progWrapS}}">
@@ -497,7 +504,12 @@ class Component extends DCLogic {
     for(let i=99;i>0;i--){const j=Math.floor(rng()*(i+1));const t=idx[i];idx[i]=idx[j];idx[j]=t;}
     this.fillRank=idx;
     this._dotCache={key:null,val:null};
-    this.state={view:0,f:{},gridN:0,muted:false,lock:false,sc:1};
+    // ── כתוביות ──────────────────────────────────────────────────────────
+    // CAP[מספר_סצנה] = [[שנייה_בה_השורה_מופיעה, 'טקסט'], ...] ממוין לפי זמן.
+    // הזמנים נמדדים מתחילת הקריינות של הסצנה, באותן יחידות כמו DUR.
+    // כל עוד הטבלה ריקה — כפתור הכתוביות אינו מוצג. פורמט מלא ב-README.
+    this.CAP={};
+    this.state={view:0,f:{},gridN:0,muted:false,lock:false,sc:1,cc:this.ccStored(),capI:-1};
     this.stageRef=React.createRef();
     this.progRef=React.createRef();this.dot2Ref=React.createRef();this.costRef=React.createRef();
     this.audio=null;this.audioOk=false;this.clock0=0;
@@ -542,6 +554,7 @@ class Component extends DCLogic {
     const cs=this.CUES[v]||[];
     for(let i=0;i<cs.length;i++){const K=v+':'+cs[i][0];if(p>=cs[i][1]&&!this.state.f[K]){if(!nf)nf=Object.assign({},this.state.f);nf[K]=true;}}
     if(nf)this.setState({f:nf});
+    const ci=this.capIdx();if(ci!==this.state.capI)this.setState({capI:ci});
     if(this.progRef.current)this.progRef.current.style.width=((((v-1)+p)/10)*100).toFixed(2)+'%';
     if(v===4){
       const ramp=Math.round(28*this.easeO(this.seg(p,.03,.14)));
@@ -602,6 +615,18 @@ class Component extends DCLogic {
     const iv=setInterval(()=>{i++;try{a.volume=Math.max(0,v0*(1-i/8));}catch(e){}if(i>=8){clearInterval(iv);try{a.pause();}catch(e){}}},30);
   }
   toggleMute(){const m=!this.state.muted;if(this.audio)this.audio.muted=m;this.setState({muted:m});}
+  ccStored(){try{return localStorage.getItem('nggCC')==='1';}catch(e){return false;}}
+  toggleCC(){const c=!this.state.cc;try{localStorage.setItem('nggCC',c?'1':'0');}catch(e){}this.setState({cc:c});}
+  hasCap(){for(const k in this.CAP){if((this.CAP[k]||[]).length)return true;}return false;}
+  capIdx(){
+    const list=this.CAP[this.state.view];
+    if(!list||!list.length)return -1;
+    const tm=this.prog()*(this.DUR[this.state.view]||0);
+    let i=-1;
+    for(let j=0;j<list.length;j++){if(tm>=list[j][0])i=j;else break;}
+    return i;
+  }
+  capText(){const list=this.CAP[this.state.view],i=this.capIdx();return (list&&i>=0&&list[i])?list[i][1]:'';}
   rv(on,o){
     o=o||{};const y=o.y!==undefined?o.y:18,x=o.x||0,s=o.s!==undefined?o.s:1,d=o.d!==undefined?o.d:.8,dl=o.dl||0;
     if(on)return 'opacity:1;transform:translate(0px,0px) scale(1);transition:opacity '+d+'s '+this.E+' '+dl+'s,transform '+d+'s '+this.E+' '+dl+'s';
@@ -697,6 +722,7 @@ class Component extends DCLogic {
       onNext:()=>this.next(),
       onBack:()=>this.back(),
       onMute:()=>this.toggleMute(),
+      onCC:()=>this.toggleCC(),
       onRestart:()=>this.restart(),
       stageRef:this.stageRef,progRef:this.progRef,cntRef:this.cntRef,dot2Ref:this.dot2Ref,costRef:this.costRef,
       stageScale:this.state.sc,
@@ -723,10 +749,13 @@ class Component extends DCLogic {
         progWrapS:'opacity:'+(on?1:0)+';transition:opacity .7s ease .3s',
         trackS:'background:'+(dk?'rgba(255,255,255,.14)':'rgba(21,21,31,.1)')+';transition:background .9s ease',
         cntS:'color:'+(dk?'#8f8f96':'#949494')+';transition:color .9s ease',
-        srcS:'opacity:'+(on?1:0)+';color:'+(dk?'#8f8f96':'#949494')+';transition:opacity .7s ease .3s,color .9s ease'
+        srcS:'opacity:'+(on?1:0)+';color:'+(dk?'#8f8f96':'#949494')+';transition:opacity .7s ease .3s,color .9s ease',
+        ccS:(this.hasCap()?'':'display:none;')+'border:1px solid '+(this.state.cc?'#ec2a8c':(dk?'rgba(255,255,255,.28)':'rgba(21,21,31,.18)'))+';color:'+(this.state.cc?'#ee4f9e':(dk?'#b5b3b4':'#5a5a5c'))+';transition:border-color .4s ease,color .4s ease',
+        capWrapS:'opacity:'+((this.state.cc&&on&&this.capText())?1:0)+';transition:opacity .25s ease'
       },
       ctaTxt:v===10?'סיום':'המשך',
       counterTxt:on?(('0'+v).slice(-2)+' / 10'):'',
+      capTxt:this.capText(),
       srcText:sn.t,srcHref:sn.h||'#',
       srcHasLink:on&&!!sn.h,srcNoLink:on&&!sn.h,
       muted:this.state.muted,soundOn:!this.state.muted,

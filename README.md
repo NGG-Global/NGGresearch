@@ -71,6 +71,36 @@ python3 -m http.server 8000
    marks the template), point it at the new file, and remove the matching
    "בקרוב" placeholder card.
 
+## Subtitles
+
+Each unit carries a subtitle (caption) track for its narration, toggled by the
+`CC` control next to the audio button. The choice is remembered across scenes
+and units in `localStorage` under `nggCC`.
+
+The caption text lives in a `this.CAP` table in each unit's script block, next
+to `AUD`, `DUR` and `CUES`:
+
+```js
+this.CAP={
+  1:[[0.4,'שורת הכתובית הראשונה של סצנה 1'],
+     [6.2,'השורה הבאה, מופיעה בשנייה 6.2'],
+     [14.0,'וכן הלאה']],
+  2:[[0.5,'…']],
+};
+```
+
+- The key is the scene number (1-based), matching `AUD` and `CUES`.
+- Each entry is `[startSeconds, text]`; seconds are counted from the start of
+  that scene's narration, the same clock `CUES` uses.
+- Entries must be sorted by time. A line stays on screen until the next one
+  starts, or until the scene ends.
+- Reusing the scene's `CUES` timings is the quickest way to get captions that
+  land on the animation beats; finer sentence-level times work equally well.
+
+`CAP` is empty until the narration text is supplied. While a unit's table is
+empty its `CC` control stays hidden, so an untranscribed unit shows no dead
+button.
+
 ## Notes
 
 - The site is publicly reachable by anyone with the URL. All pages carry
