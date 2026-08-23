@@ -505,10 +505,22 @@ class Component extends DCLogic {
     this.fillRank=idx;
     this._dotCache={key:null,val:null};
     // ── כתוביות ──────────────────────────────────────────────────────────
-    // CAP[מספר_סצנה] = [[שנייה_בה_השורה_מופיעה, 'טקסט'], ...] ממוין לפי זמן.
-    // הזמנים נמדדים מתחילת הקריינות של הסצנה, באותן יחידות כמו DUR.
+    // CAP[מספר_סצנה] = {שם_cue:'טקסט', ...} — שורה אחת לכל cue של הסצנה.
+    // הזמן נלקח אוטומטית מ-CUES, אין צורך לתזמן שום דבר ידנית.
+    // cue בלי טקסט פשוט מדלג; השורה הקודמת נשארת על המסך.
     // כל עוד הטבלה ריקה — כפתור הכתוביות אינו מוצג. פורמט מלא ב-README.
-    this.CAP={};
+    this.CAP={
+      1:{t1:'',ring:'',gap:'',neq:'',settle:''},   // השאלה הפותחת
+      2:{ax:'',yrs:'',cost:'',clab:'',price:'',plab:'',shade:'',neq:'',settle:''},   // הפרדוקס
+      3:{lab:'',conv:'',n1:'',n2:'',front:'',flab:'',settle:''},   // העדויות
+      4:{pct:'',tl:'',cnt:'',chips:'',recede:'',settle:''},   // השוק הישראלי
+      5:{in:'',l52:'',n13:'',l13:'',gapx:'',w1:'',w2:'',w3:'',w4:'',neq:'',settle:''},   // הפער
+      6:{led:'',rule:'',rates:'',cap:'',stamp:'',settle:''},   // בדיקת מציאות
+      7:{arrow:'',albl:'',l1:'',l2:'',l3:'',l4:'',st1:'',st2:'',hyb:'',settle:''},   // ארבע יחידות ערך
+      8:{fee:'',p1:'',p2:'',p3:'',p4:'',bars:'',shrink:'',mx:'',settle:''},   // ניסוי ראשון
+      9:{days:'',ticks:'',a1:'',a2:'',a3:'',a4:'',a5:'',spark:'',kpi:'',settle:''},   // ניסוי שני
+      10:{h1:'',m1:'',m2:'',m3:'',h2:'',m4:'',glow:'',dark:'',value:'',q:'',settle:''},   // ניסוי שלישי
+    };
     this.state={view:0,f:{},gridN:0,muted:false,lock:false,sc:1,cc:this.ccStored(),capI:-1};
     this.stageRef=React.createRef();
     this.progRef=React.createRef();this.dot2Ref=React.createRef();this.costRef=React.createRef();
@@ -617,16 +629,29 @@ class Component extends DCLogic {
   toggleMute(){const m=!this.state.muted;if(this.audio)this.audio.muted=m;this.setState({muted:m});}
   ccStored(){try{return localStorage.getItem('nggCC')==='1';}catch(e){return false;}}
   toggleCC(){const c=!this.state.cc;try{localStorage.setItem('nggCC',c?'1':'0');}catch(e){}this.setState({cc:c});}
-  hasCap(){for(const k in this.CAP){if((this.CAP[k]||[]).length)return true;}return false;}
+  capSec(v,c){return c*(this.DUR[v]||0);}
+  capList(v){
+    if(this._capSrc!==this.CAP){this._capSrc=this.CAP;this._capC={};}
+    if(this._capC[v])return this._capC[v];
+    const src=this.CAP[v],out=[];
+    if(Array.isArray(src)){for(let i=0;i<src.length;i++){if(src[i]&&src[i][1])out.push([src[i][0],src[i][1]]);}}
+    else if(src&&typeof src==='object'){
+      const cues=this.CUES[v]||[];
+      for(let i=0;i<cues.length;i++){const tx=src[cues[i][0]];if(tx)out.push([this.capSec(v,cues[i][1]),tx]);}
+    }
+    out.sort((a,b)=>a[0]-b[0]);
+    this._capC[v]=out;return out;
+  }
+  hasCap(){for(const k in this.CAP){if(this.capList(k).length)return true;}return false;}
   capIdx(){
-    const list=this.CAP[this.state.view];
-    if(!list||!list.length)return -1;
+    const list=this.capList(this.state.view);
+    if(!list.length)return -1;
     const tm=this.prog()*(this.DUR[this.state.view]||0);
     let i=-1;
     for(let j=0;j<list.length;j++){if(tm>=list[j][0])i=j;else break;}
     return i;
   }
-  capText(){const list=this.CAP[this.state.view],i=this.capIdx();return (list&&i>=0&&list[i])?list[i][1]:'';}
+  capText(){const list=this.capList(this.state.view),i=this.capIdx();return (i>=0&&list[i])?list[i][1]:'';}
   rv(on,o){
     o=o||{};const y=o.y!==undefined?o.y:18,x=o.x||0,s=o.s!==undefined?o.s:1,d=o.d!==undefined?o.d:.8,dl=o.dl||0;
     if(on)return 'opacity:1;transform:translate(0px,0px) scale(1);transition:opacity '+d+'s '+this.E+' '+dl+'s,transform '+d+'s '+this.E+' '+dl+'s';

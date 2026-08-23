@@ -474,10 +474,20 @@ class Component extends DCLogic {
   constructor(props){
     super(props);
     // ── כתוביות ──────────────────────────────────────────────────────────
-    // CAP[מספר_סצנה] = [[שנייה_בה_השורה_מופיעה, 'טקסט'], ...] ממוין לפי זמן.
-    // הזמנים נמדדים מתחילת הקריינות של הסצנה — אותן יחידות כמו CUES ו-DUR.
+    // CAP[מספר_סצנה] = {שם_cue:'טקסט', ...} — שורה אחת לכל cue של הסצנה.
+    // הזמן נלקח אוטומטית מ-CUES, אין צורך לתזמן שום דבר ידנית.
+    // cue בלי טקסט פשוט מדלג; השורה הקודמת נשארת על המסך.
     // כל עוד הטבלה ריקה — כפתור הכתוביות אינו מוצג. פורמט מלא ב-README.
-    this.CAP={};
+    this.CAP={
+      1:{head:'',mach:'',lic:'',fast:'',jam:'',k1:'',k2:'',k3:'',k4:'',wide:'',q:''},   // המכונה הארגונית
+      2:{head:'',n1:'',n2:'',jar:'',same:'',cut:'',p21:'',grow:''},   // הראיות
+      3:{head:'',cube:'',crack:'',blocks:'',g1:'',g2:'',g3:'',split:'',stuck:''},   // חלוקת העבודה
+      4:{head:'',split:'',mod:'',ikea:'',roles:'',kl:'',qual:'',back:'',msg:''},   // הבחירה הניהולית
+      5:{head:'',claim:'',lanes:'',audit:'',conv:'',freeze:'',who:'',human:''},   // בקרה
+      6:{head:'',board:'',drag:'',ai:'',t30:'',exc:'',open:'',q60:'',f1:'',f2:'',f3:'',f4:'',f5:''},   // הניהול
+      7:{head:'',wave:'',ceil:'',free:'',stop:'',l1:'',l2:'',l3:'',l4:'',flip:''},   // ישראל
+      8:{head:'',mach:'',st1:'',st2:'',st3:'',st4:'',st5:'',ngg:'',n1:'',n2:'',n3:'',n4:'',n5:'',n6:'',n7:'',n8:'',final:'',q:''},   // ומה עכשיו
+    };
     this.state={view:0,f:{},muted:false,sc:.5,lock:false,cc:this.ccStored(),capI:-1};
     this.rootRef=React.createRef();this.progRef=React.createRef();
     this.E='cubic-bezier(.55,.06,.28,.99)';this.EO='cubic-bezier(.16,.84,.28,1)';
@@ -591,16 +601,29 @@ class Component extends DCLogic {
   toggleMute(){const m=!this.state.muted;if(this.audio)this.audio.muted=m;this.setState({muted:m});}
   ccStored(){try{return localStorage.getItem('nggCC')==='1';}catch(e){return false;}}
   toggleCC(){const c=!this.state.cc;try{localStorage.setItem('nggCC',c?'1':'0');}catch(e){}this.setState({cc:c});}
-  hasCap(){for(const k in this.CAP){if((this.CAP[k]||[]).length)return true;}return false;}
+  capSec(v,c){return c;}
+  capList(v){
+    if(this._capSrc!==this.CAP){this._capSrc=this.CAP;this._capC={};}
+    if(this._capC[v])return this._capC[v];
+    const src=this.CAP[v],out=[];
+    if(Array.isArray(src)){for(let i=0;i<src.length;i++){if(src[i]&&src[i][1])out.push([src[i][0],src[i][1]]);}}
+    else if(src&&typeof src==='object'){
+      const cues=this.CUES[v]||[];
+      for(let i=0;i<cues.length;i++){const tx=src[cues[i][0]];if(tx)out.push([this.capSec(v,cues[i][1]),tx]);}
+    }
+    out.sort((a,b)=>a[0]-b[0]);
+    this._capC[v]=out;return out;
+  }
+  hasCap(){for(const k in this.CAP){if(this.capList(k).length)return true;}return false;}
   capIdx(){
-    const list=this.CAP[this.state.view];
-    if(!list||!list.length)return -1;
+    const list=this.capList(this.state.view);
+    if(!list.length)return -1;
     const tm=this.t();
     let i=-1;
     for(let j=0;j<list.length;j++){if(tm>=list[j][0])i=j;else break;}
     return i;
   }
-  capText(){const list=this.CAP[this.state.view],i=this.capIdx();return (list&&i>=0&&list[i])?list[i][1]:'';}
+  capText(){const list=this.capList(this.state.view),i=this.capIdx();return (i>=0&&list[i])?list[i][1]:'';}
   fl(n,k){return !!this.state.f[n+':'+k];}
   rv(on,o){
     o=o||{};const y=o.y!==undefined?o.y:18,x=o.x||0,s=o.s!==undefined?o.s:1,d=o.d!==undefined?o.d:.8,dl=o.dl||0;
