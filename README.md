@@ -3,16 +3,17 @@
 Static site presenting NGG deep-research findings — pricing, methods, tools,
 and ways of action — as a series of interactive, narrated slide units, each
 distilling a study on a different organizational topic. Planned scope: 5
-units. Currently live: units 01–04.
+units. All five are live.
 
 ## Structure
 
 ```
-index.html          Homepage — directory of all units (4 live, 1 placeholder)
+index.html          Homepage — directory of all units
 unit-01.html        Unit 01 · כש-AI מקצר את העבודה — מה קורה למחיר?
 unit-02.html        Unit 02 · מתוצרים חד־פעמיים לנכסים מתמשכים
 unit-03.html        Unit 03 · Trusted Advisor בעידן ה-AI
 unit-04.html        Unit 04 · AI Transformation — מה ארגונים באמת משנים
+unit-05.html        Unit 05 · המנהל בעידן ה-AI — לא פחות ניהול. ניהול אחר.
 support.js          Runtime that boots the interactive units (generated file — do not edit)
 vendor/             React 18.3.1 UMD builds, self-hosted (integrity-verified)
 assets/             NGG logos + homepage preview images (assets/previews/)
@@ -20,6 +21,7 @@ audio/              Unit 01 narration, one MP3 per slide
 audio02/            Unit 02 narration, one MP3 per slide
 audio03/            Unit 03 narration, one MP3 per scene
 audio04/            Unit 04 narration, one MP3 per scene
+audio05/            Unit 05 narration, one MP3 per scene
 ```
 
 Every reference is relative, so the site works from any root — GitHub Pages
@@ -58,48 +60,57 @@ python3 -m http.server 8000
 # open http://localhost:8000/
 ```
 
-## Adding a unit (05)
+## Adding a unit
 
-1. Add the unit file as `unit-05.html` and its narration folder (e.g.
-   `audio05/`), keeping the same relative layout the file expects. If the unit
-   was produced like units 01–02, also add to its `<head>`: a `<title>`, the
-   robots/noindex tag, and the two `vendor/` script tags **before**
-   `support.js` (copy the head of `unit-02.html`).
-2. Add a preview image: `assets/previews/unit-05.jpg` (1280×720 screenshot of
+1. Add the unit file as `unit-NN.html` and its narration folder (`audioNN/`),
+   keeping the same relative layout the file expects. Its `<head>` needs a
+   `<title>`, the robots/noindex tag, and the two `vendor/` script tags
+   **before** `support.js` — copy the head of `unit-05.html`.
+2. Add a preview image: `assets/previews/unit-NN.jpg` (1280×720 screenshot of
    the unit cover).
-3. In `index.html`, copy one of the live unit cards (the comment in the file
-   marks the template), point it at the new file, and remove the matching
-   "בקרוב" placeholder card.
+3. In `index.html`, copy one of the unit cards (the comment in the file marks
+   the template), point it at the new file, and update the unit count in the
+   header strip.
 
 ## Subtitles
 
-Each unit carries a subtitle (caption) track for its narration, toggled by the
-`CC` control next to the audio button. The choice is remembered across scenes
-and units in `localStorage` under `nggCC`.
+Each unit carries a subtitle track for its narration, so the content can be
+followed with the sound off. It is toggled by the `CC` control next to the
+audio button. Defaults: **audio on, subtitles off**. Once a viewer turns
+subtitles on the choice is remembered (`localStorage`, key `nggCC`), so it
+follows them across scenes and units.
 
-The caption text lives in a `this.CAP` table in each unit's script block, next
-to `AUD`, `DUR` and `CUES`:
+The text lives in a `this.CAP` table in each unit's script block, right below
+`CUES`. One line per animation cue, keyed by cue name — the timing comes from
+`CUES` automatically, so there is nothing to time by hand:
 
 ```js
 this.CAP={
-  1:[[0.4,'שורת הכתובית הראשונה של סצנה 1'],
-     [6.2,'השורה הבאה, מופיעה בשנייה 6.2'],
-     [14.0,'וכן הלאה']],
-  2:[[0.5,'…']],
+  1:{head:'קנינו AI. מה באמת השתנה?',
+     mach:'ארגון הוא מכונה של תהליכים, לא רק אוסף כלים.',
+     lic:'עשרת אלפים רישיונות זו לא טרנספורמציה.',
+     fast:'', jam:'', q:''},   // המכונה הארגונית
 };
 ```
 
-- The key is the scene number (1-based), matching `AUD` and `CUES`.
-- Each entry is `[startSeconds, text]`; seconds are counted from the start of
-  that scene's narration, the same clock `CUES` uses.
-- Entries must be sorted by time. A line stays on screen until the next one
-  starts, or until the scene ends.
-- Reusing the scene's `CUES` timings is the quickest way to get captions that
-  land on the animation beats; finer sentence-level times work equally well.
+- The key is the scene number, matching `AUD`, `DUR` and `CUES`.
+- Inside each scene the keys are that scene's cue names, taken straight from
+  its `CUES` entry. The skeleton in each file already lists every cue for
+  every scene, so filling subtitles in means typing between the quotes.
+- A line appears when its cue fires and stays until the next filled cue. An
+  empty cue is skipped — the previous line stays on screen.
+- Order inside the object does not matter; lines are sorted by cue time.
+- A scene may instead use an explicit `[[seconds, text], ...]` array when it
+  needs finer, sentence-level timing than the cue beats give. Unit 05 uses
+  this form throughout: its lines are cut at the narration's own sentence
+  boundaries and timed to them, independently of the animation cues.
 
-`CAP` is empty until the narration text is supplied. While a unit's table is
-empty its `CC` control stays hidden, so an untranscribed unit shows no dead
-button.
+Subtitles track the fallback timer as well as the audio clock, so they stay in
+sync when audio is blocked or muted — which is the case this feature exists
+for.
+
+While every slot in a unit is still empty its `CC` control stays hidden, so an
+untranscribed unit shows no dead button.
 
 ## Notes
 
