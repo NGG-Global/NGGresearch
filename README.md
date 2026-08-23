@@ -3,16 +3,17 @@
 Static site presenting NGG deep-research findings — pricing, methods, tools,
 and ways of action — as a series of interactive, narrated slide units, each
 distilling a study on a different organizational topic. Planned scope: 5
-units. Currently live: units 01–04.
+units. All five are live.
 
 ## Structure
 
 ```
-index.html          Homepage — directory of all units (4 live, 1 placeholder)
+index.html          Homepage — directory of all units
 unit-01.html        Unit 01 · כש-AI מקצר את העבודה — מה קורה למחיר?
 unit-02.html        Unit 02 · מתוצרים חד־פעמיים לנכסים מתמשכים
 unit-03.html        Unit 03 · Trusted Advisor בעידן ה-AI
 unit-04.html        Unit 04 · AI Transformation — מה ארגונים באמת משנים
+unit-05.html        Unit 05 · המנהל בעידן ה-AI — לא פחות ניהול. ניהול אחר.
 support.js          Runtime that boots the interactive units (generated file — do not edit)
 vendor/             React 18.3.1 UMD builds, self-hosted (integrity-verified)
 assets/             NGG logos + homepage preview images (assets/previews/)
@@ -20,6 +21,7 @@ audio/              Unit 01 narration, one MP3 per slide
 audio02/            Unit 02 narration, one MP3 per slide
 audio03/            Unit 03 narration, one MP3 per scene
 audio04/            Unit 04 narration, one MP3 per scene
+audio05/            Unit 05 narration, one MP3 per scene
 ```
 
 Every reference is relative, so the site works from any root — GitHub Pages
@@ -58,18 +60,17 @@ python3 -m http.server 8000
 # open http://localhost:8000/
 ```
 
-## Adding a unit (05)
+## Adding a unit
 
-1. Add the unit file as `unit-05.html` and its narration folder (e.g.
-   `audio05/`), keeping the same relative layout the file expects. If the unit
-   was produced like units 01–02, also add to its `<head>`: a `<title>`, the
-   robots/noindex tag, and the two `vendor/` script tags **before**
-   `support.js` (copy the head of `unit-02.html`).
-2. Add a preview image: `assets/previews/unit-05.jpg` (1280×720 screenshot of
+1. Add the unit file as `unit-NN.html` and its narration folder (`audioNN/`),
+   keeping the same relative layout the file expects. Its `<head>` needs a
+   `<title>`, the robots/noindex tag, and the two `vendor/` script tags
+   **before** `support.js` — copy the head of `unit-05.html`.
+2. Add a preview image: `assets/previews/unit-NN.jpg` (1280×720 screenshot of
    the unit cover).
-3. In `index.html`, copy one of the live unit cards (the comment in the file
-   marks the template), point it at the new file, and remove the matching
-   "בקרוב" placeholder card.
+3. In `index.html`, copy one of the unit cards (the comment in the file marks
+   the template), point it at the new file, and update the unit count in the
+   header strip.
 
 ## Subtitles
 
@@ -99,8 +100,10 @@ this.CAP={
 - A line appears when its cue fires and stays until the next filled cue. An
   empty cue is skipped — the previous line stays on screen.
 - Order inside the object does not matter; lines are sorted by cue time.
-- A scene may instead use an explicit `[[seconds, text], ...]` array if it
-  ever needs finer, sentence-level timing than the cue beats give.
+- A scene may instead use an explicit `[[seconds, text], ...]` array when it
+  needs finer, sentence-level timing than the cue beats give. Unit 05 uses
+  this form throughout: its lines are cut at the narration's own sentence
+  boundaries and timed to them, independently of the animation cues.
 
 Subtitles track the fallback timer as well as the audio clock, so they stay in
 sync when audio is blocked or muted — which is the case this feature exists

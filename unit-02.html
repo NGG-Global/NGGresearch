@@ -723,7 +723,7 @@ class Component extends DCLogic {
     if(this.state.lock)return;
     const v=this.state.view;
     if(v===0){this.goTo(1);return;}
-    if(v>=1&&v<=9){this.goTo(v+1);return;}
+    if(v>=1&&v<=7){this.goTo(v+1);return;}
     if(v===8){this.fadeAudio();this.setState({view:9,lock:true});clearTimeout(this._lockT);this._lockT=setTimeout(()=>this.setState({lock:false}),900);}
   }
   back(){if(this.state.lock)return;const v=this.state.view;if(v>=2&&v<=8)this.goTo(v-1);}
