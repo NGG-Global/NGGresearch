@@ -729,16 +729,16 @@ class Component extends DCLogic {
     this.state={view:0,f:{},muted:false,sc:.5,lock:false,cc:this.ccStored(),capI:-1};
     this.rootRef=React.createRef();this.progRef=React.createRef();
     this.E='cubic-bezier(.55,.06,.28,.99)';this.EO='cubic-bezier(.16,.84,.28,1)';
-    this.AUD={1:'audio02/s01.mp3',2:'audio02/s02.mp3',3:'audio02/s03.mp3',4:'audio02/s04.mp3',5:'audio02/s05.mp3',6:'audio02/s06.mp3',7:'audio02/s07.mp3',8:'audio02/s08.mp3',9:'audio02/s09.mp3',10:'audio02/s10.mp3'};
-    this.DUR={1:26.75,2:34.04,3:31.01,4:34.19,5:26.67,6:39.97,7:27.64,8:31.32,9:50.29,10:36.83};
+    this.AUD={1:'audio02/s01.mp3',2:'audio02/s02.mp3',3:'audio02/s03.mp3',4:'audio02/s04.mp3',5:'audio02/s06.mp3',6:'audio02/s07.mp3',7:'audio02/s08_09.mp3',8:'audio02/s10.mp3',9:null,10:null};
+    this.DUR={1:26.75,2:34.04,3:31.01,4:34.19,5:39.97,6:27.64,7:81.61,8:36.83,9:50.29,10:36.83};
     this.CUES={
       1:[['deck',.2],['stamp',1.8],['pull1',5],['pull2',9.5],['q',14],['neq',19.5]],
       2:[['n95',.7],['d78',4.5],['wave',8],['open',11],['n13',13.5],['layers',17.5],['gapline',24]],
       3:[['page',.3],['chart',4.5],['checks',8.5],['sim',12.5],['data',16],['unify',20.5],['ring',24.5]],
       4:[['core',.6],['ring',3.2],['a1',6.5],['a2',10],['a3',13.5],['a4',17],['conv',21.5],['formula',25.5]],
-      5:[['tangle',.4],['g1',3.4],['g2',6.6],['g3',9.8],['g4',13],['g5',16.2],['g6',19.4],['slots',22.4]],
-      6:[['path',.4],['w1',2.2],['w2',4.6],['w3',7],['w4',9.4],['edge',12],['b1',15.5],['b2',18],['pillars',20.5],['n32',23.5],['signal',27.5],['loop',31],['ltxt',34.5]],
-      7:[['spin',.15],['portal',1.2],['modals',3.5],['oppress',5.5],['shatter',7.5],['lanes',9],['dist',12.5],['tools',15],['stick',17],['peel',20],['aiv',23.5]],
+      5:[['tangle',.4],['g1',5.6],['g2',8.8],['g3',13.4],['g4',17.3],['g5',22.6],['g6',27.5],['slots',31.6]],
+      6:[['path',.4],['w1',3.9],['w2',4.9],['w3',5.9],['w4',6.8],['edge',8],['b1',15],['b2',16.6],['pillars',18.2],['n32',19.4],['signal',20],['loop',24.3],['ltxt',25.8]],
+      7:[['spin',.15],['portal',2.6],['modals',4],['oppress',5],['shatter',6],['lanes',8.8],['dist',20.7],['tools',33],['stick',34.6],['peel',38],['aiv',48.5]],
       8:[['seed',.5],['f1',3],['f2',6],['f3',9],['f4',12],['f5',15],['m34',18.5],['fall',22.5],['neq',24.8]],
       9:[['field',.6],['fly',4],['wells',8.5],['pull',11],['later',14],['qw1',16.5],['qw2',23.5],['qw3',30.5],['nodes',38.5],['dline',43]],
       10:[['deck',.4],['open',3],['n1',5.5],['n2',7.5],['n3',9.5],['n4',11.5],['loop',14],['exit',18],['pull',22.5],['others',26],['q',29],['choice',32.5]]
@@ -816,6 +816,7 @@ class Component extends DCLogic {
   playScene(n){
     this.fadeAudio();this.audioOk=false;this.clock0=0;
     if(n<1||n>10)return;
+    if(!this.AUD[n]){this.audio=null;this.clock0=performance.now();return;}
     const a=new Audio(this.AUD[n]);a.preload='auto';a.muted=this.state.muted;this.audio=a;
     a.addEventListener('ended',()=>{if(this.state.view===n)this.onEnded(n);});
     a.addEventListener('error',()=>{if(this.state.view===n&&!this.audioOk&&!this.clock0)this.clock0=performance.now();});
@@ -826,7 +827,7 @@ class Component extends DCLogic {
       if(pr&&pr.then){pr.then(()=>{this.audioOk=true;}).catch(()=>{if(!this.clock0)this.clock0=performance.now();});}
       else{this.audioOk=true;}
     },520);
-    if(n<10){this._pre=new Audio(this.AUD[n+1]);this._pre.preload='auto';}
+    if(n<10&&this.AUD[n+1]){this._pre=new Audio(this.AUD[n+1]);this._pre.preload='auto';}
   }
   onEnded(n){
     const nf=Object.assign({},this.state.f);let ch=false;
