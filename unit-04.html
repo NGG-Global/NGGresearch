@@ -446,7 +446,13 @@ a:hover{color:#ec2a8c}
       <line x1="3" y1="21" x2="21" y2="3" stroke="#ec2a8c" stroke-width="2.4" stroke-linecap="round" style="{{ui.mx}}"></line>
     </svg>
   </button>
+  <button onClick="{{onCC}}" title="כתוביות" aria-label="כתוביות" dir="ltr" style="width:38px;height:38px;border-radius:50%;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;font-family:inherit;font-size:11px;font-weight:800;letter-spacing:.03em;{{ui.cc}}">CC</button>
   <div dir="ltr" style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;letter-spacing:.14em;{{ui.cnt}}">{{cntTxt}}</div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:104px;z-index:6;pointer-events:none;{{ui.capWrap}}">
+  <div style="max-width:900px;margin:0 auto;padding:0 40px">
+    <div style="display:inline-block;width:100%;box-sizing:border-box;background:rgba(8,8,14,.84);color:#f4f4f6;border-radius:10px;padding:11px 22px;font-size:17px;line-height:1.5;text-align:center;text-wrap:balance">{{capTxt}}</div>
+  </div>
 </div>
 <div style="position:absolute;left:0;right:0;bottom:0;z-index:6;height:3px;{{ui.progWrap}}">
   <div style="position:absolute;inset:0;{{ui.track}}"></div>
@@ -467,7 +473,12 @@ a:hover{color:#ec2a8c}
 class Component extends DCLogic {
   constructor(props){
     super(props);
-    this.state={view:0,f:{},muted:false,sc:.5,lock:false};
+    // ── כתוביות ──────────────────────────────────────────────────────────
+    // CAP[מספר_סצנה] = [[שנייה_בה_השורה_מופיעה, 'טקסט'], ...] ממוין לפי זמן.
+    // הזמנים נמדדים מתחילת הקריינות של הסצנה — אותן יחידות כמו CUES ו-DUR.
+    // כל עוד הטבלה ריקה — כפתור הכתוביות אינו מוצג. פורמט מלא ב-README.
+    this.CAP={};
+    this.state={view:0,f:{},muted:false,sc:.5,lock:false,cc:this.ccStored(),capI:-1};
     this.rootRef=React.createRef();this.progRef=React.createRef();
     this.E='cubic-bezier(.55,.06,.28,.99)';this.EO='cubic-bezier(.16,.84,.28,1)';
     this.AUD={1:'audio04/scene_01_tool_vs_transformation.mp3',2:'audio04/scene_02_productivity_without_redesign.mp3',3:'audio04/scene_03_split_the_work_not_the_job.mp3',4:'audio04/scene_04_ikea_vs_klarna.mp3',5:'audio04/scene_05_governance_inside_workflow.mp3',6:'audio04/scene_06_manager_role_changes.mp3',7:'audio04/scene_07_israel_gap_and_measurement.mp3',8:'audio04/scene_08_from_adoption_to_transformation.mp3'};
@@ -530,6 +541,7 @@ class Component extends DCLogic {
     cues.forEach((c)=>{const K=v+':'+c[0];if(tm>=c[1]&&!this.state.f[K]){if(!nf)nf=Object.assign({},this.state.f);nf[K]=true;}});
     if(tm>=(this.DUR[v]||99)-0.15&&!this.state.f[v+':settle']){if(!nf)nf=Object.assign({},this.state.f);nf[v+':settle']=true;}
     if(nf)this.setState({f:nf});
+    const ci=this.capIdx();if(ci!==this.state.capI)this.setState({capI:ci});
     const p=this.progRef.current;
     if(p){const pr=Math.min(tm/(this.DUR[v]||1),1);p.style.width=(((v-1)+pr)/8*100)+'%';}
   }
@@ -577,6 +589,18 @@ class Component extends DCLogic {
     const iv=setInterval(()=>{i++;try{a.volume=Math.max(0,v0*(1-i/8));}catch(e){}if(i>=8){clearInterval(iv);try{a.pause();}catch(e){}}},30);
   }
   toggleMute(){const m=!this.state.muted;if(this.audio)this.audio.muted=m;this.setState({muted:m});}
+  ccStored(){try{return localStorage.getItem('nggCC')==='1';}catch(e){return false;}}
+  toggleCC(){const c=!this.state.cc;try{localStorage.setItem('nggCC',c?'1':'0');}catch(e){}this.setState({cc:c});}
+  hasCap(){for(const k in this.CAP){if((this.CAP[k]||[]).length)return true;}return false;}
+  capIdx(){
+    const list=this.CAP[this.state.view];
+    if(!list||!list.length)return -1;
+    const tm=this.t();
+    let i=-1;
+    for(let j=0;j<list.length;j++){if(tm>=list[j][0])i=j;else break;}
+    return i;
+  }
+  capText(){const list=this.CAP[this.state.view],i=this.capIdx();return (list&&i>=0&&list[i])?list[i][1]:'';}
   fl(n,k){return !!this.state.f[n+':'+k];}
   rv(on,o){
     o=o||{};const y=o.y!==undefined?o.y:18,x=o.x||0,s=o.s!==undefined?o.s:1,d=o.d!==undefined?o.d:.8,dl=o.dl||0;
@@ -651,12 +675,13 @@ class Component extends DCLogic {
     const curSt=F(8,'st5')?5:(F(8,'st4')?4:(F(8,'st3')?3:(F(8,'st2')?2:(F(8,'st1')?1:0))));
     return {
       sc:this.state.sc,
-      onNext:()=>this.next(),onBack:()=>this.back(),onMute:()=>this.toggleMute(),onRestart:()=>this.restart(),
+      onNext:()=>this.next(),onBack:()=>this.back(),onMute:()=>this.toggleMute(),onCC:()=>this.toggleCC(),onRestart:()=>this.restart(),
       rootRef:this.rootRef,progRef:this.progRef,
       bgS:'background:'+(BG[v]||'#0d0d15')+';transition:background 1.3s ease',
       lay:{c:this.lay(0,true),s1:this.lay(1,false),s2:this.lay(2,false),s3:this.lay(3,false),s4:this.lay(4,false),s5:this.lay(5,false),s6:this.lay(6,false),s7:this.lay(7,false),s8:this.lay(8,false),end:this.lay(9,true)},
       ctaTxt:v===8?'סיום':'המשך',
       cntTxt:on?(('0'+v).slice(-2)+' / 08'):'',
+      capTxt:this.capText(),
       srcTxt:this.SRC[v]||'',
       ui:{
         brandW:fade(true,.6),
@@ -664,6 +689,8 @@ class Component extends DCLogic {
         brandB:'color:'+(dk?'#8f8e9a':'#98958a')+';transition:color 1s ease',
         cluster:'opacity:'+(on?1:0)+';pointer-events:'+(on?'auto':'none')+';transition:opacity .7s ease .3s',
         mute:'border:1px solid '+(dk?'rgba(242,241,245,.3)':'rgba(28,28,38,.25)')+';color:'+(dk?'#b9b8c2':'#56555c')+';transition:border-color 1s ease,color 1s ease',
+        cc:(this.hasCap()?'':'display:none;')+'border:1px solid '+(this.state.cc?'#ec2a8c':(dk?'rgba(242,241,245,.3)':'rgba(28,28,38,.25)'))+';color:'+(this.state.cc?'#ec2a8c':(dk?'#b9b8c2':'#56555c'))+';transition:border-color .4s ease,color .4s ease',
+        capWrap:'opacity:'+((this.state.cc&&on&&this.capText())?1:0)+';transition:opacity .25s ease',
         back:'opacity:'+(on&&v>=2?1:0)+';pointer-events:'+(on&&v>=2?'auto':'none')+';border:1px solid '+(dk?'rgba(242,241,245,.3)':'rgba(28,28,38,.25)')+';color:'+(dk?'#b9b8c2':'#56555c')+';transition:opacity .5s ease,border-color 1s ease,color 1s ease',
         exit:'border:1px solid '+(dk?'rgba(242,241,245,.3)':'rgba(28,28,38,.25)')+';color:'+(dk?'#b9b8c2':'#56555c')+';transition:border-color 1s ease,color 1s ease',
         mw:fade(!this.state.muted,.3),mx:fade(this.state.muted,.3),
