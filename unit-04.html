@@ -52,7 +52,7 @@ a:hover{color:#ec2a8c}
     <div style="width:120px;height:3px;background:#ec2a8c;margin:26px 0 30px"></div>
     <h1 style="margin:0;font-family:'Frank Ruhl Libre',serif;font-size:74px;font-weight:900;color:#f7f6f9;line-height:1.18;letter-spacing:-.01em">AI Transformation<br>מה ארגונים באמת משנים</h1>
     <div style="margin-top:26px;font-size:23px;font-weight:300;color:#b9b8c2;max-width:880px;margin-right:0;margin-left:auto;line-height:1.65">לא מספיק להוסיף AI לעבודה קיימת.<br>טרנספורמציה מתחילה כשהארגון משנה את העבודה עצמה.</div>
-    <div dir="ltr" style="text-align:right;margin-top:30px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;letter-spacing:.16em;color:#6f6e7a">8 SCENES · ≈5.5 MIN · <span dir="rtl">הקריינות מלווה את התנועה</span></div>
+    <div dir="ltr" style="text-align:right;margin-top:30px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;letter-spacing:.16em;color:#6f6e7a">7 SCENES · ≈5.5 MIN · <span dir="rtl">הקריינות מלווה את התנועה</span></div>
     <div style="margin-top:44px;display:flex;align-items:center;gap:20px;justify-content:flex-start">
       <button onClick="{{onNext}}" style="background:#ec2a8c;color:#ffffff;border:none;border-radius:10px;padding:17px 52px;font-size:21px;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 10px 34px rgba(236,42,140,.4)" style-hover="background:#d11e78" style-active="transform:scale(.985)">התחלה</button>
       <div style="font-size:14px;color:#8f8e9a">מומלץ להאזין עם שמע</div>
@@ -190,6 +190,7 @@ a:hover{color:#ec2a8c}
     <div style="background:#fbfaf7;border:1.5px solid #c9752b;border-radius:8px;padding:8px 18px;font-size:13.5px;font-weight:700;color:#c9752b;transform:rotate(-2deg)">חריג מורכב</div>
     <div style="margin-top:8px;background:#fbfaf7;border:1.5px solid #c9752b;border-radius:8px;padding:8px 18px;font-size:13.5px;font-weight:700;color:#c9752b;transform:rotate(2deg)">המלצה רגישה</div>
     <div style="margin-top:10px;font-size:12.5px;color:#c9752b">צריך כלל ברור</div>
+    <div style="margin-top:13px;font-size:12.5px;color:#56555f;line-height:1.5">המערכת מנתחת ומציעה —<br>ההחלטה נשארת אצל אדם</div>
   </div></div>
 </div>
 
@@ -242,108 +243,75 @@ a:hover{color:#ec2a8c}
 <!-- ══ SCENE 5 · בקרה בתוך התהליך ══ -->
 <div data-screen-label="s5" style="position:absolute;inset:0;z-index:2;{{lay.s5}}">
   <div style="position:absolute;right:110px;top:74px;width:1050px;text-align:right;{{s5.head}}">
-    <div style="font-size:15px;font-weight:700;color:#ec2a8c;letter-spacing:.06em">05 · בקרה</div>
-    <div style="margin-top:8px;font-size:36px;font-weight:800;color:#f2f1f6;line-height:1.3">בקרה אמיתית נמצאת בתוך התהליך</div>
-  </div>
-  <div style="position:absolute;left:1220px;top:400px;background:#fbfaf7;border-radius:10px;padding:14px 24px;font-size:16px;font-weight:700;color:#1c1c26;box-shadow:0 14px 34px rgba(0,0,0,.4);{{s5.claim}}">תביעה אחת</div>
-  <div style="position:absolute;inset:0;{{s5.dim}}">
-    <sc-for list="{{s5.lanes}}" as="ln" hint-placeholder-count="0">
-      <div style="position:absolute;left:0;top:0;{{ln.w}}">
-        <div style="position:absolute;right:0;top:-9px;font-size:13.5px;color:#b9b8c2;white-space:nowrap">{{ln.t}}</div>
-        <svg width="560" height="4" viewBox="0 0 560 4" style="display:block;overflow:visible"><line x1="0" y1="2" x2="560" y2="2" stroke="#2f8577" stroke-width="2.5" stroke-dasharray="16 16" style="animation:lanePulse 1.1s linear infinite"></line></svg>
-      </div>
-    </sc-for>
-    <svg viewBox="0 0 1600 900" style="position:absolute;inset:0;width:100%;height:100%">
-      <line x1="1140" y1="700" x2="480" y2="700" stroke="#8f8e9a" stroke-width="1.5" stroke-dasharray="5 7" pathLength="1" style="{{s5.audit}}"></line>
-    </svg>
-    <div style="position:absolute;left:1080px;top:712px;font-size:12.5px;color:#8f8e9a;{{s5.auditl}}">Audit trail — נכתב תוך כדי, לא בסוף</div>
-  </div>
-  <div style="position:absolute;left:250px;top:392px;text-align:center;{{s5.conv}}">
-    <div style="background:rgba(242,241,245,.07);border:1px solid rgba(242,241,245,.35);border-radius:12px;padding:16px 26px;font-size:16.5px;font-weight:700;color:#f2f1f6">סיכום מבוקר אחד</div>
-    <div dir="ltr" style="margin-top:12px;font-family:ui-monospace,monospace;font-size:14px;color:#2f8577;font-weight:700">&lt; 5 דקות</div>
-  </div>
-  <div style="position:absolute;left:0;right:0;top:330px;text-align:center;{{s5.who}}">
-    <div style="font-family:'Frank Ruhl Libre',serif;font-size:60px;font-weight:900;color:#f7f6f9">מי מוסמך להחליט?</div>
-  </div>
-  <div style="position:absolute;left:0;right:0;top:470px;text-align:center;{{s5.human}}">
-    <div style="display:inline-block;background:#ec2a8c;color:#fff;border-radius:999px;padding:12px 42px;font-size:22px;font-weight:800">אדם</div>
-    <div style="margin-top:14px;font-size:15px;color:#b9b8c2">סמכות התשלום הסופית נשארת אצל איש מקצוע מנוסה</div>
-    <svg width="220" height="40" viewBox="0 0 220 40" style="margin-top:10px"><path d="M 10,28 C 35,12 55,34 80,22 C 100,13 112,30 135,20 C 152,13 165,26 182,19 C 194,14 204,22 212,17" fill="none" stroke="#ec2a8c" stroke-width="2.5" stroke-linecap="round" pathLength="1" stroke-dasharray="1" style="{{s5.sig}}"></path></svg>
-  </div>
-</div>
-
-<!-- ══ SCENE 6 · המנהל ══ -->
-<div data-screen-label="s6" style="position:absolute;inset:0;z-index:2;{{lay.s6}}">
-  <div style="position:absolute;right:110px;top:74px;width:1050px;text-align:right;{{s6.head}}">
     <div style="font-size:15px;font-weight:700;color:#ec2a8c;letter-spacing:.06em">06 · הניהול</div>
     <div style="margin-top:8px;font-size:36px;font-weight:800;color:#1c1c26;line-height:1.3">כשהעבודה משתנה, גם המנהל משתנה</div>
   </div>
-  <div dir="ltr" style="position:absolute;left:210px;top:250px;width:210px;text-align:center;{{s6.clock}}">
+  <div dir="ltr" style="position:absolute;left:210px;top:250px;width:210px;text-align:center;{{s5.clock}}">
     <svg width="170" height="170" viewBox="0 0 170 170">
       <circle cx="85" cy="85" r="74" fill="none" stroke="#e0dcd2" stroke-width="12"></circle>
-      <circle cx="85" cy="85" r="74" fill="none" stroke="#1c1c26" stroke-width="12" stroke-linecap="round" pathLength="1" stroke-dasharray="1" transform="rotate(-90 85 85)" style="{{s6.arc}}"></circle>
+      <circle cx="85" cy="85" r="74" fill="none" stroke="#1c1c26" stroke-width="12" stroke-linecap="round" pathLength="1" stroke-dasharray="1" transform="rotate(-90 85 85)" style="{{s5.arc}}"></circle>
     </svg>
     <div style="position:absolute;left:0;right:0;top:52px;text-align:center">
-      <div style="font-family:'Frank Ruhl Libre',serif;font-size:40px;font-weight:900;color:#1c1c26;{{s6.t90}}">90</div>
-      <div style="font-family:'Frank Ruhl Libre',serif;font-size:40px;font-weight:900;color:#2f8577;margin-top:-48px;{{s6.t30v}}">30</div>
+      <div style="font-family:'Frank Ruhl Libre',serif;font-size:40px;font-weight:900;color:#1c1c26;{{s5.t90}}">90</div>
+      <div style="font-family:'Frank Ruhl Libre',serif;font-size:40px;font-weight:900;color:#2f8577;margin-top:-48px;{{s5.t30v}}">30</div>
       <div dir="rtl" style="margin-top:4px;font-size:13px;color:#6d6c76">דקות · תכנון משמרת</div>
     </div>
   </div>
-  <div style="position:absolute;left:620px;top:236px;width:660px;{{s6.board}}">
-    <sc-for list="{{s6.cells}}" as="cl" hint-placeholder-count="0">
+  <div style="position:absolute;left:620px;top:236px;width:660px;{{s5.board}}">
+    <sc-for list="{{s5.cells}}" as="cl" hint-placeholder-count="0">
       <div style="position:absolute;width:96px;height:40px;border-radius:6px;{{cl.s}}"></div>
     </sc-for>
   </div>
-  <div style="position:absolute;left:700px;top:280px;width:480px;border-radius:14px;background:#fbfaf7;border:1.5px solid #1c1c26;padding:20px 26px;text-align:right;{{s6.exc}}">
+  <div style="position:absolute;left:700px;top:280px;width:480px;border-radius:14px;background:#fbfaf7;border:1.5px solid #1c1c26;padding:20px 26px;text-align:right;{{s5.exc}}">
     <div style="font-size:15px;font-weight:800;color:#1c1c26">מה נשאר על שולחן המנהל</div>
     <div style="margin-top:12px;font-size:15px;color:#56555f;line-height:2">חריגים שדורשים החלטה · בעיות איכות · תעדוף בין צוותים</div>
   </div>
-  <div style="position:absolute;left:0;right:0;top:520px;text-align:center;font-size:23px;font-weight:800;color:#1c1c26;{{s6.q60}}">אז מה עושים עם 60 הדקות שהתפנו?</div>
+  <div style="position:absolute;left:0;right:0;top:520px;text-align:center;font-size:23px;font-weight:800;color:#1c1c26;{{s5.q60}}">אז מה עושים עם 60 הדקות שהתפנו?</div>
   <div style="position:absolute;left:0;right:0;top:588px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
-    <span style="background:#1c1c26;color:#f6f5f0;border-radius:999px;padding:10px 24px;font-size:15px;font-weight:700;{{s6.f1}}">חריגים</span>
-    <span style="background:#1c1c26;color:#f6f5f0;border-radius:999px;padding:10px 24px;font-size:15px;font-weight:700;{{s6.f2}}">איכות</span>
-    <span style="background:#1c1c26;color:#f6f5f0;border-radius:999px;padding:10px 24px;font-size:15px;font-weight:700;{{s6.f3}}">תעדוף</span>
-    <span style="background:#1c1c26;color:#f6f5f0;border-radius:999px;padding:10px 24px;font-size:15px;font-weight:700;{{s6.f4}}">coaching</span>
-    <span style="background:#ec2a8c;color:#fff;border-radius:999px;padding:10px 24px;font-size:15px;font-weight:700;{{s6.f5}}">נוכחות בשטח</span>
+    <span style="background:#1c1c26;color:#f6f5f0;border-radius:999px;padding:10px 24px;font-size:15px;font-weight:700;{{s5.f1}}">חריגים</span>
+    <span style="background:#1c1c26;color:#f6f5f0;border-radius:999px;padding:10px 24px;font-size:15px;font-weight:700;{{s5.f2}}">איכות</span>
+    <span style="background:#1c1c26;color:#f6f5f0;border-radius:999px;padding:10px 24px;font-size:15px;font-weight:700;{{s5.f3}}">תעדוף</span>
+    <span style="background:#1c1c26;color:#f6f5f0;border-radius:999px;padding:10px 24px;font-size:15px;font-weight:700;{{s5.f4}}">coaching</span>
+    <span style="background:#ec2a8c;color:#fff;border-radius:999px;padding:10px 24px;font-size:15px;font-weight:700;{{s5.f5}}">נוכחות בשטח</span>
   </div>
 </div>
 
 <!-- ══ SCENE 7 · ישראל ══ -->
-<div data-screen-label="s7" style="position:absolute;inset:0;z-index:2;{{lay.s7}}">
-  <div style="position:absolute;right:110px;top:74px;width:1080px;text-align:right;{{s7.head}}">
+<div data-screen-label="s6" style="position:absolute;inset:0;z-index:2;{{lay.s6}}">
+  <div style="position:absolute;right:110px;top:74px;width:1080px;text-align:right;{{s6.head}}">
     <div style="font-size:15px;font-weight:700;color:#ec2a8c;letter-spacing:.06em">07 · ישראל</div>
     <div style="margin-top:8px;font-size:36px;font-weight:800;color:#1c1c26;line-height:1.3">השימוש כבר כאן. המיסוד עוד בתהליך.</div>
   </div>
-  <sc-for list="{{s7.dots}}" as="dt" hint-placeholder-count="0">
+  <sc-for list="{{s6.dots}}" as="dt" hint-placeholder-count="0">
     <div style="position:absolute;left:0;top:0;width:16px;height:16px;border-radius:50%;background:#2f8577;opacity:.75;{{dt.s}}"></div>
   </sc-for>
-  <div dir="ltr" style="position:absolute;right:150px;top:250px;text-align:center;{{s7.n57}}">
+  <div dir="ltr" style="position:absolute;right:150px;top:250px;text-align:center;{{s6.n57}}">
     <div style="font-family:'Frank Ruhl Libre',serif;font-size:104px;font-weight:900;color:#1c1c26;line-height:1">57%</div>
     <div dir="rtl" style="margin-top:8px;font-size:15px;color:#6d6c76;max-width:300px">משתמשים ב-AI בעבודה לפחות פעם בשבוע</div>
   </div>
-  <div style="position:absolute;left:230px;top:352px;width:620px;{{s7.ceil}}">
+  <div style="position:absolute;left:230px;top:352px;width:620px;{{s6.ceil}}">
     <div style="height:12px;border-radius:6px;background:repeating-linear-gradient(45deg,#c9752b 0 14px,#e0b98f 14px 28px)"></div>
     <div style="margin-top:8px;font-size:14.5px;color:#c9752b;font-weight:700;text-align:center">40% — אין מדיניות ברורה, או שלא יודעים אם קיימת</div>
   </div>
-  <div dir="ltr" style="position:absolute;left:150px;top:236px;text-align:center;{{s7.free}}">
+  <div dir="ltr" style="position:absolute;left:150px;top:236px;text-align:center;{{s6.free}}">
     <div style="font-family:'Frank Ruhl Libre',serif;font-size:56px;font-weight:900;color:#6d6c76;line-height:1">~75%</div>
     <div dir="rtl" style="margin-top:6px;font-size:14px;color:#6d6c76;max-width:220px">נשענים בעיקר על גרסאות חינמיות</div>
   </div>
-  <div dir="ltr" style="position:absolute;left:675px;top:232px;transform:rotate(-5deg);border:2.5px solid #1c1c26;border-radius:8px;padding:8px 20px;background:rgba(251,250,247,.94);font-size:19px;font-weight:800;color:#1c1c26;{{s7.stop}}">שימוש ≠ טרנספורמציה</div>
+  <div dir="ltr" style="position:absolute;left:675px;top:232px;transform:rotate(-5deg);border:2.5px solid #1c1c26;border-radius:8px;padding:8px 20px;background:rgba(251,250,247,.94);font-size:19px;font-weight:800;color:#1c1c26;{{s6.stop}}">שימוש ≠ טרנספורמציה</div>
   <div style="position:absolute;left:280px;top:430px;width:520px">
-    <div style="border:1.5px solid #1c1c26;border-radius:9px;background:#fbfaf7;padding:9px 18px;font-size:14.5px;font-weight:700;color:#1c1c26;text-align:right;{{s7.l1}}">גישה מאושרת ומאובטחת</div>
-    <div style="margin-top:8px;border:1.5px solid #1c1c26;border-radius:9px;background:#fbfaf7;padding:9px 18px;font-size:14.5px;font-weight:700;color:#1c1c26;text-align:right;{{s7.l2}}">אחריות ומדיניות ברורה</div>
-    <div style="margin-top:8px;border:1.5px solid #1c1c26;border-radius:9px;background:#fbfaf7;padding:9px 18px;font-size:14.5px;font-weight:700;color:#1c1c26;text-align:right;{{s7.l3}}">שגרות ניהול</div>
-    <div style="margin-top:8px;border:1.5px solid #ec2a8c;border-radius:9px;background:#fbfaf7;padding:9px 18px;font-size:14.5px;font-weight:700;color:#ec2a8c;text-align:right;{{s7.l4}}">מדידה</div>
+    <div style="border:1.5px solid #1c1c26;border-radius:9px;background:#fbfaf7;padding:9px 18px;font-size:14.5px;font-weight:700;color:#1c1c26;text-align:right;{{s6.l1}}">גישה מאושרת ומאובטחת</div>
+    <div style="margin-top:8px;border:1.5px solid #1c1c26;border-radius:9px;background:#fbfaf7;padding:9px 18px;font-size:14.5px;font-weight:700;color:#1c1c26;text-align:right;{{s6.l2}}">אחריות ומדיניות ברורה</div>
+    <div style="margin-top:8px;border:1.5px solid #1c1c26;border-radius:9px;background:#fbfaf7;padding:9px 18px;font-size:14.5px;font-weight:700;color:#1c1c26;text-align:right;{{s6.l3}}">שגרות ניהול</div>
+    <div style="margin-top:8px;border:1.5px solid #ec2a8c;border-radius:9px;background:#fbfaf7;padding:9px 18px;font-size:14.5px;font-weight:700;color:#ec2a8c;text-align:right;{{s6.l4}}">מדידה</div>
   </div>
-  <div style="position:absolute;left:900px;top:472px;width:420px;{{s7.dashA}}">
+  <div style="position:absolute;left:900px;top:472px;width:420px;{{s6.dashA}}">
     <div style="border:1.5px solid #c9c5ba;border-radius:12px;background:#fbfaf7;padding:16px 20px;text-align:right">
       <div style="font-size:13px;color:#8a8892">לוח מדדים</div>
       <div style="margin-top:6px;font-size:16.5px;font-weight:700;color:#56555f">משתמשים פעילים · כמות פרומפטים</div>
     </div>
     <div dir="ltr" style="position:absolute;left:-16px;top:-14px;background:#c9752b;color:#fff;border-radius:8px;padding:6px 14px;font-size:14px;font-weight:800;transform:rotate(-6deg)">אז מה?</div>
   </div>
-  <div style="position:absolute;left:900px;top:472px;width:420px;{{s7.dashB}}">
+  <div style="position:absolute;left:900px;top:472px;width:420px;{{s6.dashB}}">
     <div style="border:2px solid #ec2a8c;border-radius:12px;background:#fbfaf7;padding:16px 20px;text-align:right">
       <div style="font-size:13px;color:#ec2a8c;font-weight:700">מה מודדים באמת</div>
       <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:7px;justify-content:flex-end">
@@ -358,60 +326,60 @@ a:hover{color:#ec2a8c}
 </div>
 
 <!-- ══ SCENE 8 · מהטמעה לטרנספורמציה ══ -->
-<div data-screen-label="s8" style="position:absolute;inset:0;z-index:2;{{lay.s8}}">
-  <div style="position:absolute;right:110px;top:74px;width:1150px;text-align:right;{{s8.head}}">
+<div data-screen-label="s7" style="position:absolute;inset:0;z-index:2;{{lay.s7}}">
+  <div style="position:absolute;right:110px;top:74px;width:1150px;text-align:right;{{s7.head}}">
     <div style="font-size:15px;font-weight:700;color:#ec2a8c;letter-spacing:.06em">08 · ומה עכשיו?</div>
     <div style="margin-top:8px;font-size:34px;font-weight:800;color:#1c1c26;line-height:1.3">לא להטמיע AI בעבודה. לעצב מחדש את העבודה עם AI.</div>
   </div>
-  <div style="position:absolute;inset:0;{{s8.dimall}}">
+  <div style="position:absolute;inset:0;{{s7.dimall}}">
     <div style="position:absolute;left:200px;right:200px;top:210px;display:flex;justify-content:space-between">
-      <div style="width:214px;text-align:center;font-size:13.5px;font-weight:700;padding:9px 6px;border-radius:9px;{{s8.r5}}">5 · תהליכים מרובי־סוכנים</div>
-      <div style="width:214px;text-align:center;font-size:13.5px;font-weight:700;padding:9px 6px;border-radius:9px;{{s8.r4}}">4 · מודל עבודה אדם–AI</div>
-      <div style="width:214px;text-align:center;font-size:13.5px;font-weight:700;padding:9px 6px;border-radius:9px;{{s8.r3}}">3 · תהליך העבודה משתנה</div>
-      <div style="width:214px;text-align:center;font-size:13.5px;font-weight:700;padding:9px 6px;border-radius:9px;{{s8.r2}}">2 · AI עוזר בתפקיד הקיים</div>
-      <div style="width:214px;text-align:center;font-size:13.5px;font-weight:700;padding:9px 6px;border-radius:9px;{{s8.r1}}">1 · גישה לכלי</div>
+      <div style="width:214px;text-align:center;font-size:13.5px;font-weight:700;padding:9px 6px;border-radius:9px;{{s7.r5}}">5 · תהליכים מרובי־סוכנים</div>
+      <div style="width:214px;text-align:center;font-size:13.5px;font-weight:700;padding:9px 6px;border-radius:9px;{{s7.r4}}">4 · מודל עבודה אדם–AI</div>
+      <div style="width:214px;text-align:center;font-size:13.5px;font-weight:700;padding:9px 6px;border-radius:9px;{{s7.r3}}">3 · תהליך העבודה משתנה</div>
+      <div style="width:214px;text-align:center;font-size:13.5px;font-weight:700;padding:9px 6px;border-radius:9px;{{s7.r2}}">2 · AI עוזר בתפקיד הקיים</div>
+      <div style="width:214px;text-align:center;font-size:13.5px;font-weight:700;padding:9px 6px;border-radius:9px;{{s7.r1}}">1 · גישה לכלי</div>
     </div>
-    <div style="position:absolute;left:300px;top:380px;width:1000px;height:170px;{{s8.mach}}">
+    <div style="position:absolute;left:300px;top:380px;width:1000px;height:170px;{{s7.mach}}">
       <div style="position:absolute;left:0;top:60px;width:1000px;height:3px;background:#c9c5ba"></div>
-      <div style="position:absolute;left:150px;top:120px;width:700px;height:3px;background:#2f8577;transform-origin:left;{{s8.branch}}"></div>
+      <div style="position:absolute;left:150px;top:120px;width:700px;height:3px;background:#2f8577;transform-origin:left;{{s7.branch}}"></div>
       <div style="position:absolute;left:830px;top:34px;background:#fbfaf7;border:1px solid #b9b5ab;border-radius:8px;padding:7px 16px;font-size:13px;color:#56555f">קליטה</div>
       <div style="position:absolute;left:560px;top:34px;background:#fbfaf7;border:1px solid #b9b5ab;border-radius:8px;padding:7px 16px;font-size:13px;color:#56555f">עיבוד</div>
       <div style="position:absolute;left:300px;top:34px;background:#fbfaf7;border:1px solid #b9b5ab;border-radius:8px;padding:7px 16px;font-size:13px;color:#56555f">אישור</div>
       <div style="position:absolute;left:90px;top:34px;background:#fbfaf7;border:1px solid #b9b5ab;border-radius:8px;padding:7px 16px;font-size:13px;color:#56555f">מסירה</div>
-      <div style="position:absolute;left:436px;top:44px;width:9px;height:34px;background:#1c1c26;border-radius:3px;{{s8.gate}}"></div>
-      <div style="position:absolute;left:700px;top:48px;width:24px;height:24px;border-radius:50%;background:#1c1c26;animation:miniRun 8s linear infinite;{{s8.wk1}}"></div>
-      <div style="position:absolute;left:760px;top:48px;width:24px;height:24px;border-radius:50%;background:#1c1c26;animation:miniRun 8s linear infinite;animation-delay:-4s;{{s8.wk1}}"></div>
-      <div dir="ltr" style="position:absolute;left:940px;top:-24px;background:#fbfaf7;border:1.5px solid #2f8577;border-radius:8px;padding:6px 14px;font-family:ui-monospace,monospace;font-size:13px;font-weight:700;color:#2f8577;{{s8.tool}}">AI</div>
-      <div style="position:absolute;left:428px;top:42px;width:38px;height:38px;border-radius:50%;background:#ec2a8c;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:800;{{s8.node}}">✓</div>
-      <div style="position:absolute;left:392px;top:92px;font-size:12px;color:#ec2a8c;font-weight:700;white-space:nowrap;{{s8.node}}">נקודת החלטה אנושית</div>
-      <div dir="ltr" style="position:absolute;left:60px;top:132px;font-size:11.5px;letter-spacing:.14em;color:#2f8577;font-family:ui-monospace,monospace;{{s8.agents}}">AGENT LANES · BOUNDED</div>
-      <div style="position:absolute;left:900px;top:112px;background:rgba(251,250,247,.92);border:1px dashed #8a8892;border-radius:8px;padding:6px 14px;font-size:12px;color:#56555f;white-space:nowrap;{{s8.agents}}">חזית — לא יעד חובה לכל ארגון</div>
+      <div style="position:absolute;left:436px;top:44px;width:9px;height:34px;background:#1c1c26;border-radius:3px;{{s7.gate}}"></div>
+      <div style="position:absolute;left:700px;top:48px;width:24px;height:24px;border-radius:50%;background:#1c1c26;animation:miniRun 8s linear infinite;{{s7.wk1}}"></div>
+      <div style="position:absolute;left:760px;top:48px;width:24px;height:24px;border-radius:50%;background:#1c1c26;animation:miniRun 8s linear infinite;animation-delay:-4s;{{s7.wk1}}"></div>
+      <div dir="ltr" style="position:absolute;left:940px;top:-24px;background:#fbfaf7;border:1.5px solid #2f8577;border-radius:8px;padding:6px 14px;font-family:ui-monospace,monospace;font-size:13px;font-weight:700;color:#2f8577;{{s7.tool}}">AI</div>
+      <div style="position:absolute;left:428px;top:42px;width:38px;height:38px;border-radius:50%;background:#ec2a8c;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:800;{{s7.node}}">✓</div>
+      <div style="position:absolute;left:392px;top:92px;font-size:12px;color:#ec2a8c;font-weight:700;white-space:nowrap;{{s7.node}}">נקודת החלטה אנושית</div>
+      <div dir="ltr" style="position:absolute;left:60px;top:132px;font-size:11.5px;letter-spacing:.14em;color:#2f8577;font-family:ui-monospace,monospace;{{s7.agents}}">AGENT LANES · BOUNDED</div>
+      <div style="position:absolute;left:900px;top:112px;background:rgba(251,250,247,.92);border:1px dashed #8a8892;border-radius:8px;padding:6px 14px;font-size:12px;color:#56555f;white-space:nowrap;{{s7.agents}}">חזית — לא יעד חובה לכל ארגון</div>
     </div>
-    <div style="position:absolute;left:170px;right:170px;top:620px;{{s8.ngg}}">
+    <div style="position:absolute;left:170px;right:170px;top:620px;{{s7.ngg}}">
       <div style="text-align:center;font-size:15.5px;font-weight:800;color:#1c1c26;margin-bottom:14px">המקום של NGG — לעצב את העבודה, לא להתקין את הטכנולוגיה</div>
       <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap">
-        <span style="background:#fbfaf7;border:1.5px solid #1c1c26;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;color:#1c1c26;{{s8.n1}}">בוחרים תהליך</span>
-        <span style="font-size:14px;color:#8a8892;align-self:center;{{s8.n2}}">←</span>
-        <span style="background:#fbfaf7;border:1.5px solid #1c1c26;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;color:#1c1c26;{{s8.n2}}">מודדים מצב קיים</span>
-        <span style="font-size:14px;color:#8a8892;align-self:center;{{s8.n3}}">←</span>
-        <span style="background:#fbfaf7;border:1.5px solid #1c1c26;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;color:#1c1c26;{{s8.n3}}">מפרקים עבודה</span>
-        <span style="font-size:14px;color:#8a8892;align-self:center;{{s8.n4}}">←</span>
-        <span style="background:#fbfaf7;border:1.5px solid #1c1c26;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;color:#1c1c26;{{s8.n4}}">מחלקים אחריות</span>
-        <span style="font-size:14px;color:#8a8892;align-self:center;{{s8.n5}}">←</span>
-        <span style="background:#fbfaf7;border:1.5px solid #1c1c26;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;color:#1c1c26;{{s8.n5}}">משנים ניהול</span>
-        <span style="font-size:14px;color:#8a8892;align-self:center;{{s8.n6}}">←</span>
-        <span style="background:#fbfaf7;border:1.5px solid #1c1c26;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;color:#1c1c26;{{s8.n6}}">מתרגלים</span>
-        <span style="font-size:14px;color:#8a8892;align-self:center;{{s8.n7}}">←</span>
-        <span style="background:#fbfaf7;border:1.5px solid #1c1c26;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;color:#1c1c26;{{s8.n7}}">מריצים ניסוי</span>
-        <span style="font-size:14px;color:#8a8892;align-self:center;{{s8.n8}}">←</span>
-        <span style="background:#ec2a8c;border:1.5px solid #ec2a8c;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;color:#fff;{{s8.n8}}">מודדים תוצאה</span>
+        <span style="background:#fbfaf7;border:1.5px solid #1c1c26;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;color:#1c1c26;{{s7.n1}}">בוחרים תהליך</span>
+        <span style="font-size:14px;color:#8a8892;align-self:center;{{s7.n2}}">←</span>
+        <span style="background:#fbfaf7;border:1.5px solid #1c1c26;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;color:#1c1c26;{{s7.n2}}">מודדים מצב קיים</span>
+        <span style="font-size:14px;color:#8a8892;align-self:center;{{s7.n3}}">←</span>
+        <span style="background:#fbfaf7;border:1.5px solid #1c1c26;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;color:#1c1c26;{{s7.n3}}">מפרקים עבודה</span>
+        <span style="font-size:14px;color:#8a8892;align-self:center;{{s7.n4}}">←</span>
+        <span style="background:#fbfaf7;border:1.5px solid #1c1c26;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;color:#1c1c26;{{s7.n4}}">מחלקים אחריות</span>
+        <span style="font-size:14px;color:#8a8892;align-self:center;{{s7.n5}}">←</span>
+        <span style="background:#fbfaf7;border:1.5px solid #1c1c26;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;color:#1c1c26;{{s7.n5}}">משנים ניהול</span>
+        <span style="font-size:14px;color:#8a8892;align-self:center;{{s7.n6}}">←</span>
+        <span style="background:#fbfaf7;border:1.5px solid #1c1c26;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;color:#1c1c26;{{s7.n6}}">מתרגלים</span>
+        <span style="font-size:14px;color:#8a8892;align-self:center;{{s7.n7}}">←</span>
+        <span style="background:#fbfaf7;border:1.5px solid #1c1c26;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;color:#1c1c26;{{s7.n7}}">מריצים ניסוי</span>
+        <span style="font-size:14px;color:#8a8892;align-self:center;{{s7.n8}}">←</span>
+        <span style="background:#ec2a8c;border:1.5px solid #ec2a8c;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;color:#fff;{{s7.n8}}">מודדים תוצאה</span>
       </div>
     </div>
   </div>
-  <div style="position:absolute;left:0;right:0;top:330px;text-align:center;z-index:3;{{s8.final}}">
+  <div style="position:absolute;left:0;right:0;top:330px;text-align:center;z-index:3;{{s7.final}}">
     <div style="font-family:'Frank Ruhl Libre',serif;font-size:54px;font-weight:900;color:#1c1c26;line-height:1.4">לא להטמיע AI בעבודה.</div>
     <div style="font-family:'Frank Ruhl Libre',serif;font-size:54px;font-weight:900;color:#ec2a8c;line-height:1.4">לעצב מחדש את העבודה עם AI.</div>
-    <div style="margin-top:26px;font-size:19px;color:#6d6c76;{{s8.q}}">האם אנחנו מטמיעים כלי — או משנים את העבודה?</div>
+    <div style="margin-top:26px;font-size:19px;color:#6d6c76;{{s7.q}}">האם אנחנו מטמיעים כלי — או משנים את העבודה?</div>
   </div>
 </div>
 
@@ -469,7 +437,7 @@ a:hover{color:#ec2a8c}
 </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;autoAdvance&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;התנהגות&quot;},&quot;startScene&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:9,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;פיתוח&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;autoAdvance&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;התנהגות&quot;},&quot;startScene&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:8,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;פיתוח&quot;}}">
 class Component extends DCLogic {
   constructor(props){
     super(props);
@@ -481,25 +449,23 @@ class Component extends DCLogic {
       2:[[0.0,'יש לזה גם ראיה די חזקה.'],[0.6,'בניסוי רחב שנערך ביותר משישים חברות, יותר משבעת אלפים עובדי ידע קיבלו כלי AI.'],[6.56,'בממוצע הם חסכו בערך שעתיים בשבוע.'],[8.72,'אבל החוקרים לא מצאו שינוי משמעותי בהרכב העבודה עצמה.'],[15.56,'כלומר, קיבלנו שיפור ברמת העובד — בלי טרנספורמציה של המערכת.'],[20.72,'ובמחקר אחר של McKinsey, שינוי של תהליכי העבודה היה המשתנה שהיה קשור בצורה החזקה ביותר להשפעה כלכלית של AI.'],[34.56,'ועדיין, רק 21% מהארגונים המשתמשים ב-GenAI דיווחו שכבר עיצבו מחדש לפחות חלק מהתהליכים שלהם באופן יסודי.'],[39.44,'זה הפער שאנחנו רוצים להבין.']],
       3:[[0.0,'אחד הדפוסים הכי ברורים במחקר הוא שארגונים שמתקדמים באמת לא מתחילים מהשאלה:'],[6.48,'האם AI יכול לעשות את התפקיד הזה? הם מפרקים את התפקיד. מה חוזר על עצמו? מה מובנה? מה קל לבדוק? איפה יש חריגים? איפה צריך שיקול דעת?'],[17.4,'ואיפה מישהו צריך להיות אחראי על ההחלטה?'],[20.0,'ואז מחלקים מחדש את העבודה.'],[22.8,'AI מקבל יותר מהמשימות המובנות והניתנות לבדיקה.'],[30.4,'בני אדם נשארים במקומות שבהם צריך להבין הקשר, להתמודד עם חריגים, לנהל מערכת יחסים או לקחת אחריות.'],[35.2,'כלומר, היחידה שאנחנו משנים היא לא התפקיד. היא המשימה.']],
       4:[[2.0,'וזה מוביל לממצא חשוב: AI לא מחליט מה יקרה לעובדים. ההנהלה מחליטה.'],[7.0,'IKEA הכניסה בוט שטיפל בחלק גדול מהפניות הפשוטות.'],[11.07,'אבל במקום לראות בזמן שהתפנה רק הזדמנות לחסוך בעלויות, היא הכשירה מחדש 8,500 עובדי מוקד לעבודה כמו עיצוב פנים מרחוק, מכירה וטיפול בצרכים מורכבים יותר.'],[23.2,'Klarna עשתה בחירה אחרת.'],[26.6,'היא השתמשה ב-AI כדי לצמצם מאוד את העבודה האנושית בשירות, והשיגה שיפור מרשים במהירות ובעלות.'],[33.06,'אבל בהמשך המנכ"ל עצמו אמר שהדגש על חיסכון הלך רחוק מדי ושאיכות השירות נפגעה, והחברה החזירה דרך ברורה יותר להגיע לאדם. אותה טכנולוגיה. מודל עבודה אחר. תוצאה אחרת.']],
-      5:[[0.5,'Allianz נותנת לנו דוגמה מאוד נקייה למה שנקרא לפעמים human-in-the-loop — ופה אפשר לראות מה זה באמת אומר.'],[5.0,'בתהליך תביעה מסוים, שבעה סוכני AI מחלקים ביניהם את העבודה: כיסוי, מזג אוויר, הונאה, סייבר, חישוב תשלום וביקורת.'],[13.0,'מה שבעבר יכול היה לעבור בין כמה תחנות לאורך ימים, יכול להסתיים בתוך דקות.'],[18.0,'אבל יש קו שהמערכת לא חוצה.'],[20.5,'היא יכולה לנתח. היא יכולה להציע סכום. היא יכולה להכין את כל החומר.'],[26.0,'מי שמחליט אם לשלם הוא עדיין איש מקצוע.'],[30.0,'בקרה היא לא מסמך מדיניות שיושב בצד — היא צריכה להיות בנויה בתוך תהליך העבודה עצמו.']],
-      6:[[0.0,'כשהתהליך משתנה, גם עבודת המנהל מתחילה להשתנות.'],[4.07,'ב-Walmart, למשל, מערכת AI שמנתחת ומתעדפת משימות הורידה לפי דיווחי המנהלים את זמן תכנון משמרת הלילה מכשעה וחצי לכחצי שעה.'],[14.88,'אבל הסיפור המעניין הוא לא החיסכון בשעה. הוא מה קורה לתפקיד.'],[19.08,'חלק מהתכנון והתעדוף עובר למערכת.'],[21.92,'והמנהל צריך להתמקד יותר בחריגים, באיכות, בביצוע ובאנשים.'],[27.0,'כלומר, ללמד מנהלים להשתמש ב-AI מפספס חלק גדול מהסיפור.'],[32.08,'צריך לשאול איך שגרת הניהול עצמה משתנה.']],
-      7:[[0.4,'ובישראל, הפער הזה בולט במיוחד.'],[3.0,'בסקר של בנק ישראל והמכון הישראלי לדמוקרטיה, 57% מהעובדים שנבדקו דיווחו שהם משתמשים ב-AI בעבודה לפחות פעם בשבוע.'],[13.3,'כלומר, השימוש כבר קורה.'],[15.5,'מצד שני, 40% אמרו שאין אצלם מדיניות AI ברורה, או שהם בכלל לא יודעים אם קיימת כזאת.'],[22.5,'וכשלושה מכל ארבעה משתמשים נשענו בעיקר על גרסאות חינמיות.'],[27.5,'אז לא בטוח שהבעיה הישראלית היא איך לגרום לאנשים להתחיל להשתמש.'],[32.5,'לפחות בחלק מהארגונים, האתגר כבר עבר שלב:'],[36.5,'איך הופכים שימוש אישי ומפוזר למערכת עבודה מאושרת, בטוחה, מנוהלת ומדידה?'],[42.84,'וזה אולי מבחן הטרנספורמציה הכי פשוט: מה אתם מודדים?'],[47.44,'כמה אנשים נכנסו, כמה פרומפטים נכתבו, כמה צ\'אטים נפתחו — אלה סימנים לכך שאנשים מתחילים להשתמש.'],[56.84,'אבל הם לא מספרים אם העבודה השתפרה.'],[59.24,'הארגונים החזקים במחקר מודדים דברים אחרים:'],[62.64,'כמה זמן לוקח תהליך מקצה לקצה? מה קרה לאיכות? לכמות המקרים שאפשר לטפל בהם?'],[69.64,'לעלות, לפניות החוזרות, לחוויית הלקוח.'],[73.74,'מה שמודדים בדרך הוא לא התוצאה.']],
-      8:[[0.0,'אחר כך AI עוזר לאנשים לעשות את אותה עבודה קצת יותר מהר.'],[1.52,'ופה בעיניי נמצא החיבור הכי חזק ל-NGG.'],[7.44,'לא להתחרות על התקנת המודל, על בניית התשתית או על האינטגרציה הטכנולוגית. להתחיל במקום אחר.'],[11.04,'לבחור תהליך אמיתי שיש בו מספיק נפח, חיכוך או ערך.'],[15.84,'למדוד איך הוא עובד היום.'],[17.56,'לפרק אותו למשימות, החלטות, העברות וחריגים.'],[21.4,'להחליט מה נכון לתת ל-AI ומה חייב להישאר אצל אדם.'],[28.24,'להגדיר מי בודק, מי מאשר ומה עושים כשהמערכת לא בטוחה.'],[30.44,'לשנות בהתאם גם את העבודה של המנהלים.'],[33.28,'ורק אז לבנות למידה ותרגול סביב התפקיד החדש.'],[37.76,'מתחילים בניסוי מוגבל, ומודדים אם התהליך באמת השתפר.'],[41.92,'כלומר, ההצעה שלנו לא חייבת להיות בואו נלמד את העובדים AI. היא יכולה להיות:'],[50.04,'בואו נעצב מחדש את העבודה, כך שאנשים ו-AI יעבדו טוב יותר יחד.']]
+      5:[[0.0,'כשהתהליך משתנה, גם עבודת המנהל מתחילה להשתנות.'],[4.07,'ב-Walmart, למשל, מערכת AI שמנתחת ומתעדפת משימות הורידה לפי דיווחי המנהלים את זמן תכנון משמרת הלילה מכשעה וחצי לכחצי שעה.'],[14.88,'אבל הסיפור המעניין הוא לא החיסכון בשעה. הוא מה קורה לתפקיד.'],[19.08,'חלק מהתכנון והתעדוף עובר למערכת.'],[21.92,'והמנהל צריך להתמקד יותר בחריגים, באיכות, בביצוע ובאנשים.'],[27.0,'כלומר, ללמד מנהלים להשתמש ב-AI מפספס חלק גדול מהסיפור.'],[32.08,'צריך לשאול איך שגרת הניהול עצמה משתנה.']],
+      6:[[0.4,'ובישראל, הפער הזה בולט במיוחד.'],[3.0,'בסקר של בנק ישראל והמכון הישראלי לדמוקרטיה, 57% מהעובדים שנבדקו דיווחו שהם משתמשים ב-AI בעבודה לפחות פעם בשבוע.'],[13.3,'כלומר, השימוש כבר קורה.'],[15.5,'מצד שני, 40% אמרו שאין אצלם מדיניות AI ברורה, או שהם בכלל לא יודעים אם קיימת כזאת.'],[22.5,'וכשלושה מכל ארבעה משתמשים נשענו בעיקר על גרסאות חינמיות.'],[27.5,'אז לא בטוח שהבעיה הישראלית היא איך לגרום לאנשים להתחיל להשתמש.'],[32.5,'לפחות בחלק מהארגונים, האתגר כבר עבר שלב:'],[36.5,'איך הופכים שימוש אישי ומפוזר למערכת עבודה מאושרת, בטוחה, מנוהלת ומדידה?'],[42.84,'וזה אולי מבחן הטרנספורמציה הכי פשוט: מה אתם מודדים?'],[47.44,'כמה אנשים נכנסו, כמה פרומפטים נכתבו, כמה צ\'אטים נפתחו — אלה סימנים לכך שאנשים מתחילים להשתמש.'],[56.84,'אבל הם לא מספרים אם העבודה השתפרה.'],[59.24,'הארגונים החזקים במחקר מודדים דברים אחרים:'],[62.64,'כמה זמן לוקח תהליך מקצה לקצה? מה קרה לאיכות? לכמות המקרים שאפשר לטפל בהם?'],[69.64,'לעלות, לפניות החוזרות, לחוויית הלקוח.'],[73.74,'מה שמודדים בדרך הוא לא התוצאה.']],
+      7:[[0.0,'אחר כך AI עוזר לאנשים לעשות את אותה עבודה קצת יותר מהר.'],[1.52,'ופה בעיניי נמצא החיבור הכי חזק ל-NGG.'],[7.44,'לא להתחרות על התקנת המודל, על בניית התשתית או על האינטגרציה הטכנולוגית. להתחיל במקום אחר.'],[11.04,'לבחור תהליך אמיתי שיש בו מספיק נפח, חיכוך או ערך.'],[15.84,'למדוד איך הוא עובד היום.'],[17.56,'לפרק אותו למשימות, החלטות, העברות וחריגים.'],[21.4,'להחליט מה נכון לתת ל-AI ומה חייב להישאר אצל אדם.'],[28.24,'להגדיר מי בודק, מי מאשר ומה עושים כשהמערכת לא בטוחה.'],[30.44,'לשנות בהתאם גם את העבודה של המנהלים.'],[33.28,'ורק אז לבנות למידה ותרגול סביב התפקיד החדש.'],[37.76,'מתחילים בניסוי מוגבל, ומודדים אם התהליך באמת השתפר.'],[41.92,'כלומר, ההצעה שלנו לא חייבת להיות בואו נלמד את העובדים AI. היא יכולה להיות:'],[50.04,'בואו נעצב מחדש את העבודה, כך שאנשים ו-AI יעבדו טוב יותר יחד.']]
     };
     this.state={view:0,f:{},muted:false,sc:.5,lock:false,cc:this.ccStored(),capI:-1};
     this.rootRef=React.createRef();this.progRef=React.createRef();
     this.E='cubic-bezier(.55,.06,.28,.99)';this.EO='cubic-bezier(.16,.84,.28,1)';
-    this.AUD={1:'audio04/scene_01_tool_vs_transformation.mp3',2:'audio04/scene_02_productivity_without_redesign.mp3',3:'audio04/scene_03_split_the_work_not_the_job.mp3',4:'audio04/scene_04_ikea_vs_klarna.mp3',5:null,6:'audio04/scene_05_governance_inside_workflow.mp3',7:'audio04/scene_06_07.mp3',8:'audio04/scene_08_from_adoption_to_transformation.mp3'};
-    this.DUR={1:40.83,2:41.17,3:39.71,4:46.92,5:35.0,6:35.0,7:76.25,8:53.24};
+    this.AUD={1:'audio04/scene_01_tool_vs_transformation.mp3',2:'audio04/scene_02_productivity_without_redesign.mp3',3:'audio04/scene_03_split_the_work_not_the_job.mp3',4:'audio04/scene_04_ikea_vs_klarna.mp3',5:'audio04/scene_05_governance_inside_workflow.mp3',6:'audio04/scene_06_07.mp3',7:'audio04/scene_08_from_adoption_to_transformation.mp3'};
+    this.DUR={1:40.83,2:41.17,3:39.71,4:46.92,5:35.0,6:76.25,7:53.24};
     this.CUES={
       1:[['head',.4],['mach',1.2],['lic',8],['fast',12.5],['jam',17],['k1',23],['k2',24.5],['k3',26],['k4',27.5],['wide',31],['q',35]],
       2:[['head',.4],['n1',4],['n2',6.5],['jar',10],['same',17],['cut',23],['p21',30],['grow',35.5]],
       3:[['head',.4],['cube',1.5],['crack',6],['blocks',9],['g1',14],['g2',18],['g3',22],['split',26],['stuck',31]],
       4:[['head',.4],['split',2],['mod',6],['ikea',12],['roles',15],['kl',19],['qual',27],['back',33],['msg',39]],
-      5:[['head',.4],['claim',1.5],['lanes',5],['audit',13],['conv',18],['freeze',23],['who',26],['human',30]],
-      6:[['head',.4],['board',2],['drag',5.5],['ai',8.5],['t30',10.4],['exc',14.9],['open',17.7],['q60',20],['f1',21.9],['f2',23.2],['f3',24.8],['f4',27],['f5',29.9]],
-      7:[['head',.4],['wave',5.5],['ceil',15.2],['free',22.3],['stop',27.5],['l1',36.5],['l2',38],['l3',39.5],['l4',41],['flip',60]],
-      8:[['head',.4],['mach',1.5],['st1',6],['st2',11],['st3',16],['st4',21],['st5',26],['ngg',33],['n1',33],['n2',34.4],['n3',35.8],['n4',37.2],['n5',38.6],['n6',40],['n7',41.4],['n8',42.8],['final',46],['q',50]]
+      5:[['head',.4],['board',2],['drag',5.5],['ai',8.5],['t30',10.4],['exc',14.9],['open',17.7],['q60',20],['f1',21.9],['f2',23.2],['f3',24.8],['f4',27],['f5',29.9]],
+      6:[['head',.4],['wave',5.5],['ceil',15.2],['free',22.3],['stop',27.5],['l1',36.5],['l2',38],['l3',39.5],['l4',41],['flip',60]],
+      7:[['head',.4],['mach',1.5],['st1',6],['st2',11],['st3',16],['st4',21],['st5',26],['ngg',33],['n1',33],['n2',34.4],['n3',35.8],['n4',37.2],['n5',38.6],['n6',40],['n7',41.4],['n8',42.8],['final',46],['q',50]]
     };
     this.SRC={
       1:'מקור: הגדרות Adoption / Transformation — מחקר NGG 04',
@@ -520,7 +486,6 @@ class Component extends DCLogic {
     for(let i=0;i<10;i++){this.s2C.push({x:14+R(i*3+1,168),y:226-R(i,3)*34-(i>4?34:0),dl:i*260});}
     const bl=['שאלה פשוטה','איסוף מידע','בדיקה','המלצה','חריג','אישור','החלטה','תיעוד','מעקב','זיהוי צורך','ניסוח תשובה','עדכון לקוח'];
     this.s3B=bl.map((t,i)=>({t:t,x:340+R(i*7+3,880),y:340+R(i*11+1,150),r:R(i*3,11)-5,dl:(i%8)*90}));
-    this.s5L=['תכנון','כיסוי','מזג אוויר','הונאה','סייבר','חישוב','ביקורת'].map((t,i)=>({t:t,y:236+i*62,dl:i*120}));
     this.s6C=[];
     for(let i=0;i<24;i++){this.s6C.push({x:(i%6)*106,y:Math.floor(i/6)*54,h:R(i*5+1,3),dl:(i%9)*70});}
     this.s7D=[];
@@ -530,7 +495,7 @@ class Component extends DCLogic {
   componentDidMount(){
     window.__exp=this;
     const st=this.props.startScene??0;
-    if(st>0&&st<=9)this.setState({view:st},()=>{if(st>=1&&st<=8)this.playScene(st);});
+    if(st>0&&st<=8)this.setState({view:st},()=>{if(st>=1&&st<=7)this.playScene(st);});
     const fit=()=>{const el=this.rootRef.current;if(!el)return;const r=el.getBoundingClientRect();
       this.setState({sc:Math.min(r.width/1600,r.height/900)});};
     fit();window.addEventListener('resize',fit);this._fit=fit;
@@ -544,18 +509,18 @@ class Component extends DCLogic {
   componentWillUnmount(){window.removeEventListener('resize',this._fit);window.removeEventListener('keydown',this._key);document.removeEventListener('visibilitychange',this._vis);cancelAnimationFrame(this._raf);this.fadeAudio();clearTimeout(this._auto);clearTimeout(this._beginT);clearTimeout(this._lockT);}
   t(){const a=this.audio;if(a&&this.audioOk)return a.currentTime;if(this.clock0)return (performance.now()-this.clock0)/1000;return 0;}
   applyCues(){
-    const v=this.state.view;if(v<1||v>8)return;
+    const v=this.state.view;if(v<1||v>7)return;
     const tm=this.t(),cues=this.CUES[v]||[];let nf=null;
     cues.forEach((c)=>{const K=v+':'+c[0];if(tm>=c[1]&&!this.state.f[K]){if(!nf)nf=Object.assign({},this.state.f);nf[K]=true;}});
     if(tm>=(this.DUR[v]||99)-0.15&&!this.state.f[v+':settle']){if(!nf)nf=Object.assign({},this.state.f);nf[v+':settle']=true;}
     if(nf)this.setState({f:nf});
     const ci=this.capIdx();if(ci!==this.state.capI)this.setState({capI:ci});
     const p=this.progRef.current;
-    if(p){const pr=Math.min(tm/(this.DUR[v]||1),1);p.style.width=(((v-1)+pr)/8*100)+'%';}
+    if(p){const pr=Math.min(tm/(this.DUR[v]||1),1);p.style.width=(((v-1)+pr)/7*100)+'%';}
   }
   playScene(n){
     this.fadeAudio();this.audioOk=false;this.clock0=0;
-    if(n<1||n>8)return;
+    if(n<1||n>7)return;
     if(!this.AUD[n]){this.audio=null;this.clock0=performance.now();return;}
     const a=new Audio(this.AUD[n]);a.preload='auto';a.muted=this.state.muted;this.audio=a;
     a.addEventListener('ended',()=>{if(this.state.view===n)this.onEnded(n);});
@@ -567,14 +532,14 @@ class Component extends DCLogic {
       if(pr&&pr.then){pr.then(()=>{this.audioOk=true;}).catch(()=>{if(!this.clock0)this.clock0=performance.now();});}
       else{this.audioOk=true;}
     },520);
-    if(n<8&&this.AUD[n+1]){this._pre=new Audio(this.AUD[n+1]);this._pre.preload='auto';}
+    if(n<7&&this.AUD[n+1]){this._pre=new Audio(this.AUD[n+1]);this._pre.preload='auto';}
   }
   onEnded(n){
     const nf=Object.assign({},this.state.f);let ch=false;
     (this.CUES[n]||[]).forEach((c)=>{const K=n+':'+c[0];if(!nf[K]){nf[K]=true;ch=true;}});
     if(!nf[n+':settle']){nf[n+':settle']=true;ch=true;}
     if(ch)this.setState({f:nf});
-    if((this.props.autoAdvance??false)&&n<8){clearTimeout(this._auto);this._auto=setTimeout(()=>{if(this.state.view===n)this.next();},1900);}
+    if((this.props.autoAdvance??false)&&n<7){clearTimeout(this._auto);this._auto=setTimeout(()=>{if(this.state.view===n)this.next();},1900);}
   }
   clearScene(f,n){const o={};for(const k in f){if(k.indexOf(n+':')!==0)o[k]=f[k];}return o;}
   goTo(n){
@@ -588,9 +553,9 @@ class Component extends DCLogic {
     const v=this.state.view;
     if(v===0){this.goTo(1);return;}
     if(v>=1&&v<=7){this.goTo(v+1);return;}
-    if(v===8){this.fadeAudio();this.setState({view:9,lock:true});clearTimeout(this._lockT);this._lockT=setTimeout(()=>this.setState({lock:false}),900);}
+    if(v===7){this.fadeAudio();this.setState({view:8,lock:true});clearTimeout(this._lockT);this._lockT=setTimeout(()=>this.setState({lock:false}),900);}
   }
-  back(){if(this.state.lock)return;const v=this.state.view;if(v>=2&&v<=8)this.goTo(v-1);}
+  back(){if(this.state.lock)return;const v=this.state.view;if(v>=2&&v<=7)this.goTo(v-1);}
   restart(){if(this.state.lock)return;this.fadeAudio();this.setState({view:0,f:{}});}
   fadeAudio(){
     const a=this.audio;if(!a)return;this.audio=null;
@@ -642,10 +607,10 @@ class Component extends DCLogic {
   renderVals(){
     const v=this.state.view,F=this.fl.bind(this),E=this.E;
     const rv=this.rv.bind(this),fade=this.fade.bind(this),drw=this.drw.bind(this);
-    const on=v>=1&&v<=8;
-    const dk=(v===0||v===5||v===9);
+    const on=v>=1&&v<=7;
+    const dk=(v===0||v===8);
     const settle=on&&F(v,'settle');
-    const BG={0:'#0d0d15',1:'#f6f5f1',2:'#f6f5f1',3:'#f2f1ec',4:'#f6f5f1',5:'#0d0d15',6:'#f6f5f1',7:'#f2f1ec',8:'#f6f5f1',9:'#0d0d15'};
+    const BG={0:'#0d0d15',1:'#f6f5f1',2:'#f6f5f1',3:'#f2f1ec',4:'#f6f5f1',5:'#f6f5f1',6:'#f2f1ec',7:'#f6f5f1',8:'#0d0d15'};
     // ─ scene 1
     const workers=this.s1W.map((w)=>{
       const lic=F(1,'lic'),fast=F(1,'fast'),jam=F(1,'jam'),q=F(1,'q');
@@ -669,24 +634,23 @@ class Component extends DCLogic {
     });
     const s3cube=F(3,'blocks')?'opacity:0;transform:translateX(-50%) scale(1.15);transition:opacity .6s ease,transform .7s ease':(F(3,'crack')?'opacity:1;transform:translateX(-50%);transition:none;animation:jamShake .5s ease 4':rv(F(3,'cube'),{y:24,d:.9})+';transform:translateX(-50%)');
     // ─ scene 5
-    const lanes=this.s5L.map((l)=>({t:l.t,w:'transform:translate(480px,'+l.y+'px);opacity:'+(F(5,'lanes')&&!F(5,'conv')?1:0)+';transition:opacity .8s ease '+l.dl+'ms'}));
     // ─ scene 6
     const cells=this.s6C.map((c,i)=>{
-      const ai=F(6,'ai'),exc=F(6,'exc'),drag=F(6,'drag');
+      const ai=F(5,'ai'),exc=F(5,'exc'),drag=F(5,'drag');
       const tint=['#e8e4da','#dcd8cc','#d0ccc0'][c.h];
       let x=c.x,y=c.y;
       if(drag&&!ai&&(i===3||i===10||i===17)){x+=52;y+=26;}
       let st='transform:translate('+x+'px,'+y+'px);transition:transform 1.4s '+E+',opacity .8s ease,background .9s ease;';
       st+='background:'+(ai?'#cfe3df':tint)+';';
-      st+='opacity:'+(exc?0:(F(6,'board')?1:0))+';';
+      st+='opacity:'+(exc?0:(F(5,'board')?1:0))+';';
       return {s:st};
     });
-    const s6arc='stroke-dashoffset:'+(F(6,'t30')?0.667:0)+';transition:stroke-dashoffset 2.2s '+E;
+    const s6arc='stroke-dashoffset:'+(F(5,'t30')?0.667:0)+';transition:stroke-dashoffset 2.2s '+E;
     // ─ scene 7
     const s7dots=this.s7D.map((d)=>{
-      const up=F(7,'wave');
-      const yy=F(7,'stop')?Math.max(d.y-190,380):(up?d.y-160:d.y);
-      const op=F(7,'l1')?.22:(up?.75:0);return {s:'transform:translate('+d.x+'px,'+yy+'px);opacity:'+op+';transition:transform 2.2s '+E+' '+d.dl+'ms,opacity .9s ease '+d.dl+'ms'};
+      const up=F(6,'wave');
+      const yy=F(6,'stop')?Math.max(d.y-190,380):(up?d.y-160:d.y);
+      const op=F(6,'l1')?.22:(up?.75:0);return {s:'transform:translate('+d.x+'px,'+yy+'px);opacity:'+op+';transition:transform 2.2s '+E+' '+d.dl+'ms,opacity .9s ease '+d.dl+'ms'};
     });
     // ─ scene 8 state rail
     const rail=(k,onR,cur)=>{
@@ -694,15 +658,15 @@ class Component extends DCLogic {
       if(cur)return 'opacity:1;background:#1c1c26;border:1px solid #1c1c26;color:#f6f5f0;transition:all .8s ease';
       return 'opacity:.8;background:#fbfaf7;border:1px solid #b9b5ab;color:#56555f;transition:all .8s ease';
     };
-    const curSt=F(8,'st5')?5:(F(8,'st4')?4:(F(8,'st3')?3:(F(8,'st2')?2:(F(8,'st1')?1:0))));
+    const curSt=F(7,'st5')?5:(F(7,'st4')?4:(F(7,'st3')?3:(F(7,'st2')?2:(F(7,'st1')?1:0))));
     return {
       sc:this.state.sc,
       onNext:()=>this.next(),onBack:()=>this.back(),onMute:()=>this.toggleMute(),onCC:()=>this.toggleCC(),onRestart:()=>this.restart(),
       rootRef:this.rootRef,progRef:this.progRef,
       bgS:'background:'+(BG[v]||'#0d0d15')+';transition:background 1.3s ease',
-      lay:{c:this.lay(0,true),s1:this.lay(1,false),s2:this.lay(2,false),s3:this.lay(3,false),s4:this.lay(4,false),s5:this.lay(5,false),s6:this.lay(6,false),s7:this.lay(7,false),s8:this.lay(8,false),end:this.lay(9,true)},
-      ctaTxt:v===8?'סיום':'המשך',
-      cntTxt:on?(('0'+v).slice(-2)+' / 08'):'',
+      lay:{c:this.lay(0,true),s1:this.lay(1,false),s2:this.lay(2,false),s3:this.lay(3,false),s4:this.lay(4,false),s5:this.lay(5,false),s6:this.lay(6,false),s7:this.lay(7,false),end:this.lay(8,true)},
+      ctaTxt:v===7?'סיום':'המשך',
+      cntTxt:on?(('0'+v).slice(-2)+' / 07'):'',
       capTxt:this.capText(),
       srcTxt:this.SRC[v]||'',
       ui:{
@@ -766,57 +730,46 @@ class Component extends DCLogic {
         back:rv(F(4,'back'),{y:16,d:.8}),
         msg:rv(F(4,'msg'),{y:20,d:1})
       },
+
       s5:{
         head:rv(F(5,'head'),{y:20}),
-        claim:F(5,'lanes')?'opacity:0;transform:translateX(-80px);transition:opacity .7s ease,transform .9s ease':rv(F(5,'claim'),{x:60,y:0,d:.9}),
-        lanes:lanes,
-        dim:(F(5,'freeze')?'opacity:.3;':'opacity:1;')+'transition:opacity 1.2s ease',
-        audit:drw(F(5,'audit'),2.2),
-        auditl:fade(F(5,'audit'),.9,.6),
-        conv:(F(5,'freeze')?'opacity:.3;':'opacity:'+(F(5,'conv')?1:0)+';transform:translateY('+(F(5,'conv')?0:20)+'px);')+'transition:opacity .9s ease,transform .9s '+E,
-        who:rv(F(5,'who'),{y:26,d:1}),
-        human:rv(F(5,'human'),{y:22,d:.9}),
-        sig:drw(F(5,'human'),1.3,.5)
+        clock:rv(F(5,'board'),{y:22,d:.9}),
+        arc:s6arc,
+        t90:fade(!F(5,'t30'),.5),
+        t30v:fade(F(5,'t30'),.5,.3),
+        board:rv(F(5,'board'),{y:24,d:.9}),
+        cells:cells,
+        exc:rv(F(5,'exc'),{y:24,d:.9}),
+        q60:rv(F(5,'q60'),{y:18,d:.9}),
+        f1:rv(F(5,'f1'),{y:16,d:.7}),f2:rv(F(5,'f2'),{y:16,d:.7}),f3:rv(F(5,'f3'),{y:16,d:.7}),f4:rv(F(5,'f4'),{y:16,d:.7}),f5:rv(F(5,'f5'),{y:16,d:.7})
       },
       s6:{
         head:rv(F(6,'head'),{y:20}),
-        clock:rv(F(6,'board'),{y:22,d:.9}),
-        arc:s6arc,
-        t90:fade(!F(6,'t30'),.5),
-        t30v:fade(F(6,'t30'),.5,.3),
-        board:rv(F(6,'board'),{y:24,d:.9}),
-        cells:cells,
-        exc:rv(F(6,'exc'),{y:24,d:.9}),
-        q60:rv(F(6,'q60'),{y:18,d:.9}),
-        f1:rv(F(6,'f1'),{y:16,d:.7}),f2:rv(F(6,'f2'),{y:16,d:.7}),f3:rv(F(6,'f3'),{y:16,d:.7}),f4:rv(F(6,'f4'),{y:16,d:.7}),f5:rv(F(6,'f5'),{y:16,d:.7})
+        dots:s7dots,
+        n57:rv(F(6,'wave'),{y:26,d:1}),
+        ceil:F(6,'l1')?'opacity:0;transform:translateY(14px);transition:opacity .9s ease,transform .9s ease':rv(F(6,'ceil'),{y:18,d:.9}),
+        free:rv(F(6,'free'),{y:20,d:.9}),
+        stop:rv(F(6,'stop'),{y:14,s:.8,d:.6}),
+        l1:rv(F(6,'l1'),{y:14,d:.7}),l2:rv(F(6,'l2'),{y:14,d:.7}),l3:rv(F(6,'l3'),{y:14,d:.7}),l4:rv(F(6,'l4'),{y:14,d:.7}),
+        dashA:(F(6,'flip')?'opacity:0;transform:rotateX(84deg);':'opacity:'+(F(6,'free')?1:0)+';transform:rotateX(0deg);')+'transition:opacity .7s ease,transform .9s '+E+';transform-origin:50% 100%',
+        dashB:(F(6,'flip')?'opacity:1;transform:rotateX(0deg);transition:opacity .7s ease .5s,transform .9s '+E+' .5s;':'opacity:0;transform:rotateX(-84deg);transition:opacity .4s ease;')+'transform-origin:50% 0%'
       },
       s7:{
         head:rv(F(7,'head'),{y:20}),
-        dots:s7dots,
-        n57:rv(F(7,'wave'),{y:26,d:1}),
-        ceil:F(7,'l1')?'opacity:0;transform:translateY(14px);transition:opacity .9s ease,transform .9s ease':rv(F(7,'ceil'),{y:18,d:.9}),
-        free:rv(F(7,'free'),{y:20,d:.9}),
-        stop:rv(F(7,'stop'),{y:14,s:.8,d:.6}),
-        l1:rv(F(7,'l1'),{y:14,d:.7}),l2:rv(F(7,'l2'),{y:14,d:.7}),l3:rv(F(7,'l3'),{y:14,d:.7}),l4:rv(F(7,'l4'),{y:14,d:.7}),
-        dashA:(F(7,'flip')?'opacity:0;transform:rotateX(84deg);':'opacity:'+(F(7,'free')?1:0)+';transform:rotateX(0deg);')+'transition:opacity .7s ease,transform .9s '+E+';transform-origin:50% 100%',
-        dashB:(F(7,'flip')?'opacity:1;transform:rotateX(0deg);transition:opacity .7s ease .5s,transform .9s '+E+' .5s;':'opacity:0;transform:rotateX(-84deg);transition:opacity .4s ease;')+'transform-origin:50% 0%'
-      },
-      s8:{
-        head:rv(F(8,'head'),{y:20}),
-        dimall:(F(8,'final')?'opacity:.14;':'opacity:1;')+'transition:opacity 1.1s ease',
-        r1:rail(1,F(8,'st1'),curSt===1),r2:rail(2,F(8,'st2'),curSt===2),r3:rail(3,F(8,'st3'),curSt===3),r4:rail(4,F(8,'st4'),curSt===4),r5:rail(5,F(8,'st5'),curSt===5),
-        mach:rv(F(8,'mach'),{y:24,d:.9}),
-        tool:rv(F(8,'st1'),{y:-18,d:.7}),
-        wk1:fade(F(8,'st2'),.8)+(F(8,'st2')?';box-shadow:0 0 0 3px #2f8577':''),
-        gate:(F(8,'st3')?'opacity:0;transform:translateY(30px);':'opacity:1;')+'transition:opacity .9s ease,transform .9s ease',
-        branch:'transform:scaleX('+(F(8,'st3')?1:0)+');transition:transform 1.4s '+E,
-        node:rv(F(8,'st4'),{y:14,s:.6,d:.7}),
-        agents:rv(F(8,'st5'),{y:12,d:.8}),
-        ngg:rv(F(8,'ngg'),{y:26,d:.9}),
-        n1:rv(F(8,'n1'),{y:12,d:.6}),n2:rv(F(8,'n2'),{y:12,d:.6}),n3:rv(F(8,'n3'),{y:12,d:.6}),n4:rv(F(8,'n4'),{y:12,d:.6}),
-        n5:rv(F(8,'n5'),{y:12,d:.6}),n6:rv(F(8,'n6'),{y:12,d:.6}),n7:rv(F(8,'n7'),{y:12,d:.6}),n8:rv(F(8,'n8'),{y:12,d:.6}),
-        final:rv(F(8,'final'),{y:28,d:1}),
-        q:rv(F(8,'q'),{y:14,d:.9})
+        dimall:(F(7,'final')?'opacity:.14;':'opacity:1;')+'transition:opacity 1.1s ease',
+        r1:rail(1,F(7,'st1'),curSt===1),r2:rail(2,F(7,'st2'),curSt===2),r3:rail(3,F(7,'st3'),curSt===3),r4:rail(4,F(7,'st4'),curSt===4),r5:rail(5,F(7,'st5'),curSt===5),
+        mach:rv(F(7,'mach'),{y:24,d:.9}),
+        tool:rv(F(7,'st1'),{y:-18,d:.7}),
+        wk1:fade(F(7,'st2'),.8)+(F(7,'st2')?';box-shadow:0 0 0 3px #2f8577':''),
+        gate:(F(7,'st3')?'opacity:0;transform:translateY(30px);':'opacity:1;')+'transition:opacity .9s ease,transform .9s ease',
+        branch:'transform:scaleX('+(F(7,'st3')?1:0)+');transition:transform 1.4s '+E,
+        node:rv(F(7,'st4'),{y:14,s:.6,d:.7}),
+        agents:rv(F(7,'st5'),{y:12,d:.8}),
+        ngg:rv(F(7,'ngg'),{y:26,d:.9}),
+        n1:rv(F(7,'n1'),{y:12,d:.6}),n2:rv(F(7,'n2'),{y:12,d:.6}),n3:rv(F(7,'n3'),{y:12,d:.6}),n4:rv(F(7,'n4'),{y:12,d:.6}),
+        n5:rv(F(7,'n5'),{y:12,d:.6}),n6:rv(F(7,'n6'),{y:12,d:.6}),n7:rv(F(7,'n7'),{y:12,d:.6}),n8:rv(F(7,'n8'),{y:12,d:.6}),
+        final:rv(F(7,'final'),{y:28,d:1}),
+        q:rv(F(7,'q'),{y:14,d:.9})
       }
     };
   }
