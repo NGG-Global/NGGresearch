@@ -243,7 +243,7 @@ a:hover{color:#ec2a8c}
 <!-- ══ SCENE 5 · בקרה בתוך התהליך ══ -->
 <div data-screen-label="s5" style="position:absolute;inset:0;z-index:2;{{lay.s5}}">
   <div style="position:absolute;right:110px;top:74px;width:1050px;text-align:right;{{s5.head}}">
-    <div style="font-size:15px;font-weight:700;color:#ec2a8c;letter-spacing:.06em">06 · הניהול</div>
+    <div style="font-size:15px;font-weight:700;color:#ec2a8c;letter-spacing:.06em">05 · הניהול</div>
     <div style="margin-top:8px;font-size:36px;font-weight:800;color:#1c1c26;line-height:1.3">כשהעבודה משתנה, גם המנהל משתנה</div>
   </div>
   <div dir="ltr" style="position:absolute;left:210px;top:250px;width:210px;text-align:center;{{s5.clock}}">
@@ -279,7 +279,7 @@ a:hover{color:#ec2a8c}
 <!-- ══ SCENE 7 · ישראל ══ -->
 <div data-screen-label="s6" style="position:absolute;inset:0;z-index:2;{{lay.s6}}">
   <div style="position:absolute;right:110px;top:74px;width:1080px;text-align:right;{{s6.head}}">
-    <div style="font-size:15px;font-weight:700;color:#ec2a8c;letter-spacing:.06em">07 · ישראל</div>
+    <div style="font-size:15px;font-weight:700;color:#ec2a8c;letter-spacing:.06em">06 · ישראל</div>
     <div style="margin-top:8px;font-size:36px;font-weight:800;color:#1c1c26;line-height:1.3">השימוש כבר כאן. המיסוד עוד בתהליך.</div>
   </div>
   <sc-for list="{{s6.dots}}" as="dt" hint-placeholder-count="0">
@@ -328,7 +328,7 @@ a:hover{color:#ec2a8c}
 <!-- ══ SCENE 8 · מהטמעה לטרנספורמציה ══ -->
 <div data-screen-label="s7" style="position:absolute;inset:0;z-index:2;{{lay.s7}}">
   <div style="position:absolute;right:110px;top:74px;width:1150px;text-align:right;{{s7.head}}">
-    <div style="font-size:15px;font-weight:700;color:#ec2a8c;letter-spacing:.06em">08 · ומה עכשיו?</div>
+    <div style="font-size:15px;font-weight:700;color:#ec2a8c;letter-spacing:.06em">07 · ומה עכשיו?</div>
     <div style="margin-top:8px;font-size:34px;font-weight:800;color:#1c1c26;line-height:1.3">לא להטמיע AI בעבודה. לעצב מחדש את העבודה עם AI.</div>
   </div>
   <div style="position:absolute;inset:0;{{s7.dimall}}">
@@ -391,6 +391,17 @@ a:hover{color:#ec2a8c}
     <div style="margin-top:18px;font-size:20px;font-weight:300;color:#b9b8c2;line-height:1.7">טרנספורמציה מתחילה כשמפרקים את העבודה, מחלקים אותה מחדש בין אדם ל-AI,<br>משנים את הניהול — ומודדים תוצאה, לא שימוש.</div>
     <div dir="ltr" style="margin-top:44px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:17px;letter-spacing:.06em;color:#8f8e9a">ADOPTION <span style="color:#ec2a8c">→</span> REDESIGN <span style="color:#ec2a8c">→</span> TRANSFORMATION</div>
     <div dir="ltr" style="margin-top:16px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;letter-spacing:.22em;color:#6f6e7a">NGG DEEP RESEARCH · UNIT 04</div>
+    <sc-if value="{{res.on}}" hint-placeholder-val="{{false}}">
+      <div style="margin-top:38px;display:flex;justify-content:center">
+        <a href="{{res.href}}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:14px;background:rgba(244,243,246,.05);border:1px solid rgba(244,243,246,.22);border-radius:12px;padding:15px 26px;text-align:right;color:#f1f0f4" style-hover="border-color:#ec2a8c;background:rgba(236,42,140,.08)">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#ec2a8c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>
+            <span style="display:block;font-size:15.5px;font-weight:700">להורדת המחקר המלא</span>
+            <span dir="ltr" style="display:block;margin-top:3px;font-size:12.5px;color:#8f8e9a;text-align:right"><span dir="rtl">{{res.name}}</span> · PDF · <span dir="rtl">{{res.pages}} עמ'</span></span>
+          </span>
+        </a>
+      </div>
+    </sc-if>
     <div style="margin-top:48px;display:flex;justify-content:center;gap:18px">
       <button onClick="{{onRestart}}" style="background:transparent;color:#f2f1f6;border:1px solid rgba(242,241,245,.3);border-radius:9px;padding:13px 34px;font-size:16px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap" style-hover="border-color:#ec2a8c;color:#ec2a8c">צפייה מחדש</button>
       <a href="index.html" style="display:inline-flex;align-items:center;background:transparent;color:#f2f1f6;border:1px solid rgba(242,241,245,.3);border-radius:9px;padding:13px 34px;font-size:16px;font-weight:600;white-space:nowrap" style-hover="border-color:#ec2a8c;color:#ec2a8c">לעמוד הראשי</a>
@@ -430,8 +441,9 @@ a:hover{color:#ec2a8c}
   <button onClick="{{onNext}}" style="pointer-events:auto;background:#ec2a8c;color:#ffffff;border:none;border-radius:9px;padding:14px 58px;font-size:18px;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 8px 24px rgba(236,42,140,.3);{{ui.cta}}" style-hover="background:#d11e78" style-active="transform:scale(.985)">{{ctaTxt}}</button>
   <button onClick="{{onBack}}" title="חזרה לשקופית הקודמת" style="pointer-events:auto;background:transparent;border-radius:9px;padding:13px 24px;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:8px;{{ui.back}}" style-hover="border-color:#ec2a8c;color:#ee4f9e"><span style="font-size:16px">→</span><span>חזרה</span></button>
 </div>
-<div style="position:absolute;right:56px;bottom:52px;z-index:6;max-width:430px;text-align:right;font-size:11.5px;{{ui.src}}">
-  <span>{{srcTxt}}</span>
+<div style="position:absolute;right:56px;bottom:52px;z-index:6;max-width:560px;text-align:right;font-size:11.5px;line-height:1.5;{{ui.src}}">
+  <div>{{srcTxt}}</div>
+  <sc-if value="{{res.sceneOn}}" hint-placeholder-val="{{false}}"><div style="margin-top:4px"><a href="{{res.scene}}" target="_blank" rel="noopener" style="color:#ec2a8c;font-weight:700;white-space:nowrap" style-hover="color:#ee4f9e">להעמיק במחקר ↗</a></div></sc-if>
 </div>
 </div>
 </div>
@@ -467,6 +479,13 @@ class Component extends DCLogic {
       6:[['head',.4],['wave',5.5],['ceil',15.2],['free',22.3],['stop',27.5],['l1',36.5],['l2',38],['l3',39.5],['l4',41],['flip',60]],
       7:[['head',.4],['mach',1.5],['st1',6],['st2',11],['st3',16],['st4',21],['st5',26],['ngg',33],['n1',33],['n2',34.4],['n3',35.8],['n4',37.2],['n5',38.6],['n6',40],['n7',41.4],['n8',42.8],['final',46],['q',50]]
     };
+    // ── המחקר המלא ────────────────────────────────────────────────────────
+    // href ריק => בלוק ההורדה במסך הסיום וקישור "להעמיק במחקר" בכל סצנה
+    // מוסתרים, כדי שלא ייווצרו קישורים שבורים. להפעלה: הצב כאן את כתובת
+    // הקובץ (נתיב בריפו כמו 'research/UNIT.pdf', או קישור מאוחסן מוגן).
+    // p ממפה כל סצנה לעמוד הפתיחה של הסעיף הרלוונטי במחקר.
+    this.RES={href:'',name:'AI Transformation — מה ארגונים באמת משנים',pages:30,
+      p:{1:1,2:3,3:14,4:9,5:15,6:11,7:18}};
     this.SRC={
       1:'מקור: הגדרות Adoption / Transformation — מחקר NGG 04',
       2:'מקור: ניסוי שדה, 66 חברות / 7,137 עובדים + McKinsey 2025 — בתוך המחקר',
@@ -660,6 +679,10 @@ class Component extends DCLogic {
     };
     const curSt=F(7,'st5')?5:(F(7,'st4')?4:(F(7,'st3')?3:(F(7,'st2')?2:(F(7,'st1')?1:0))));
     return {
+      res:{on:!!this.RES.href,href:this.RES.href||'#',
+           scene:this.RES.href?(this.RES.href+'#page='+(this.RES.p[v]||1)):'#',
+           sceneOn:!!this.RES.href&&(v>=1&&v<=7),
+           name:this.RES.name,pages:String(this.RES.pages)},
       sc:this.state.sc,
       onNext:()=>this.next(),onBack:()=>this.back(),onMute:()=>this.toggleMute(),onCC:()=>this.toggleCC(),onRestart:()=>this.restart(),
       rootRef:this.rootRef,progRef:this.progRef,

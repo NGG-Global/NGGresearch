@@ -72,6 +72,40 @@ python3 -m http.server 8000
    the template), point it at the new file, and update the unit count in the
    header strip.
 
+## Full-research links
+
+Each unit can link out to the full research document it was built from, in two
+places:
+
+- **End screen** — a download panel ("להורדת המחקר המלא") with the document's
+  name, format and page count.
+- **Every scene** — a "להעמיק במחקר ↗" link in the source footer, pointing at
+  the page where that scene's material is discussed.
+
+Both are driven by one table in each unit's script block, `this.RES`:
+
+```js
+this.RES={href:'',name:'המנהל בעידן ה-AI',pages:20,
+  p:{1:1,2:10,3:3,4:16,5:5,6:6,7:12,8:11,9:9,10:13}};
+```
+
+- `href` — where the document lives. **While it is empty, both the panel and
+  every scene link render nothing at all**, so an unhosted unit shows no broken
+  link. Setting it turns the whole feature on for that unit.
+- `name`, `pages` — shown in the download panel's caption.
+- `p` — scene number → opening page of the relevant section. The scene link
+  becomes `href + '#page=' + p[scene]`, which most PDF viewers honour.
+
+The page numbers were taken from each document's own bookmark outline, matched
+to the scene that covers the same material.
+
+**Before setting `href`, check where the document may be hosted.** This
+repository is public, and the Pages workflow copies the whole repository root
+to `gh-pages` — so a PDF committed here is downloadable by anyone with the URL.
+`noindex` keeps it out of search results; it does not restrict access. For a
+document that should stay inside the team, host it somewhere access-controlled
+and put that URL in `href` instead.
+
 ## Subtitles
 
 Each unit carries a subtitle track for its narration, so the content can be

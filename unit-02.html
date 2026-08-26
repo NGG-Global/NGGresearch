@@ -541,6 +541,17 @@ a:hover{color:#ec2a8c}
       <span style="background:#1b1b28;border:1px solid rgba(244,243,246,.28);border-radius:999px;padding:9px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;font-weight:700;letter-spacing:.06em;color:#f1f0f4">03 30/60/90 ENGINE</span>
     </div>
     <div style="margin-top:34px;font-family:'Frank Ruhl Libre',serif;font-size:28px;font-weight:900;color:#f7f6f9;line-height:1.5">מה אנחנו משאירים מאחור<br>כשהפרויקט נגמר?</div>
+    <sc-if value="{{res.on}}" hint-placeholder-val="{{false}}">
+      <div style="margin-top:38px;display:flex;justify-content:center">
+        <a href="{{res.href}}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:14px;background:rgba(244,243,246,.05);border:1px solid rgba(244,243,246,.22);border-radius:12px;padding:15px 26px;text-align:right;color:#f1f0f4" style-hover="border-color:#ec2a8c;background:rgba(236,42,140,.08)">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#ec2a8c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>
+            <span style="display:block;font-size:15.5px;font-weight:700">להורדת המחקר המלא</span>
+            <span dir="ltr" style="display:block;margin-top:3px;font-size:12.5px;color:#8f8e9a;text-align:right"><span dir="rtl">{{res.name}}</span> · PDF · <span dir="rtl">{{res.pages}} עמ'</span></span>
+          </span>
+        </a>
+      </div>
+    </sc-if>
     <div style="margin-top:48px;display:flex;justify-content:center;gap:18px">
       <button onClick="{{onRestart}}" style="background:transparent;color:#f1f0f4;border:1px solid rgba(244,243,246,.3);border-radius:9px;padding:13px 34px;font-size:16px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap" style-hover="border-color:#ec2a8c;color:#ec2a8c">צפייה מחדש</button>
     </div>
@@ -580,8 +591,9 @@ a:hover{color:#ec2a8c}
   <button onClick="{{onNext}}" style="pointer-events:auto;background:#ec2a8c;color:#ffffff;border:none;border-radius:9px;padding:14px 58px;font-size:18px;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 8px 24px rgba(236,42,140,.3);{{ui.cta}}" style-hover="background:#d11e78" style-active="transform:scale(.985)">{{ctaTxt}}</button>
   <button onClick="{{onBack}}" title="חזרה לשקופית הקודמת" style="pointer-events:auto;background:transparent;border-radius:9px;padding:13px 24px;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:8px;{{ui.back}}" style-hover="border-color:#ec2a8c;color:#ee4f9e"><span style="font-size:16px">→</span><span>חזרה</span></button>
 </div>
-<div style="position:absolute;right:56px;bottom:52px;z-index:6;max-width:430px;text-align:right;font-size:11.5px;{{ui.src}}">
-  <span>{{srcTxt}}</span>
+<div style="position:absolute;right:56px;bottom:52px;z-index:6;max-width:560px;text-align:right;font-size:11.5px;line-height:1.5;{{ui.src}}">
+  <div>{{srcTxt}}</div>
+  <sc-if value="{{res.sceneOn}}" hint-placeholder-val="{{false}}"><div style="margin-top:4px"><a href="{{res.scene}}" target="_blank" rel="noopener" style="color:#ec2a8c;font-weight:700;white-space:nowrap" style-hover="color:#ee4f9e">להעמיק במחקר ↗</a></div></sc-if>
 </div>
 </div>
 </div>
@@ -619,6 +631,13 @@ class Component extends DCLogic {
       7:[['spin',.15],['portal',2.6],['modals',4],['oppress',5],['shatter',6],['lanes',8.8],['dist',20.7],['tools',33],['stick',34.6],['peel',38],['aiv',48.5]],
       8:[['seed',.5],['f1',3],['f2',6],['f3',9],['f4',12],['f5',15],['m34',18.5],['fall',22.5],['neq',24.8]]
     };
+    // ── המחקר המלא ────────────────────────────────────────────────────────
+    // href ריק => בלוק ההורדה במסך הסיום וקישור "להעמיק במחקר" בכל סצנה
+    // מוסתרים, כדי שלא ייווצרו קישורים שבורים. להפעלה: הצב כאן את כתובת
+    // הקובץ (נתיב בריפו כמו 'research/UNIT.pdf', או קישור מאוחסן מוגן).
+    // p ממפה כל סצנה לעמוד הפתיחה של הסעיף הרלוונטי במחקר.
+    this.RES={href:'',name:'תוצרים נלווים ורפיטביליים לתהליכי למידה וייעוץ',pages:36,
+      p:{1:1,2:13,3:3,4:5,5:27,6:16,7:13,8:13}};
     this.SRC={
       1:'מקור: מחקר NGG יחידה 02 — מתוצרים לנכסים מתמשכים',
       2:'מקור: רשות החדשנות/ברוקדייל 2025 · סקר מעסיקים 2026 — בתוך המחקר',
@@ -919,6 +938,10 @@ class Component extends DCLogic {
     if(F(10,'exit'))cons='opacity:0;transform:translateX(-460px);transition:transform 2.2s '+E+',opacity 1.4s ease .7s';
     else if(F(10,'deck'))cons='opacity:1;transform:translateX(0px);transition:opacity .9s ease .4s';
     return {
+      res:{on:!!this.RES.href,href:this.RES.href||'#',
+           scene:this.RES.href?(this.RES.href+'#page='+(this.RES.p[v]||1)):'#',
+           sceneOn:!!this.RES.href&&(v>=1&&v<=8),
+           name:this.RES.name,pages:String(this.RES.pages)},
       sc:this.state.sc,
       onNext:()=>this.next(),onBack:()=>this.back(),onMute:()=>this.toggleMute(),onCC:()=>this.toggleCC(),onRestart:()=>this.restart(),
       rootRef:this.rootRef,progRef:this.progRef,

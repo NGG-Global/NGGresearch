@@ -345,7 +345,7 @@ a:hover{color:#ec2a8c}
         <div style="margin-top:2.2cqw;font-size:1.75cqw;font-weight:800;color:#f4f4f6;line-height:1.5">אם הזמן כבר לא מספר את כל הסיפור —<br>מה אנחנו בעצם מוכרים?</div>
         <div style="margin-top:2.6cqw;display:flex;gap:1.4cqw;justify-content:center;align-items:center">
           <button onClick="{{onRestart}}" style="background:transparent;color:#f4f4f6;border:1px solid rgba(255,255,255,.3);border-radius:9px;padding:.85cqw 2.2cqw;font-size:1cqw;font-weight:600;font-family:inherit;cursor:pointer" style-hover="border-color:#ec2a8c;color:#ee4f9e">הפעלה מחדש ↺</button>
-          <a href="uploads/NGG_AI_Pricing_Interactive_Unit_Design_Pack/references/research_full_he.pdf" target="_blank" rel="noopener" style="font-size:.95cqw;color:#8f8f96">למחקר המלא (PDF) ↗</a>
+          <sc-if value="{{res.on}}" hint-placeholder-val="{{false}}"><a href="{{res.href}}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.6cqw;font-size:.95cqw;font-weight:700;color:#ec2a8c" style-hover="color:#ee4f9e"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><span>להורדת המחקר המלא (PDF · {{res.pages}} עמ')</span></a></sc-if>
         </div>
       </div>
     </div>
@@ -412,9 +412,10 @@ a:hover{color:#ec2a8c}
     <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;letter-spacing:.12em;{{ui.cntS}}">{{counterTxt}}</div>
   </div>
 
-  <div style="position:absolute;right:36px;bottom:38px;z-index:6;font-size:12px;white-space:nowrap;{{ui.srcS}}">
+  <div style="position:absolute;right:36px;bottom:38px;z-index:6;font-size:12px;text-align:right;white-space:nowrap;{{ui.srcS}}">
     <sc-if value="{{srcHasLink}}" hint-placeholder-val="{{false}}"><a href="{{srcHref}}" target="_blank" rel="noopener" style="color:inherit">{{srcText}}</a></sc-if>
     <sc-if value="{{srcNoLink}}" hint-placeholder-val="{{false}}"><span>{{srcText}}</span></sc-if>
+    <sc-if value="{{res.sceneOn}}" hint-placeholder-val="{{false}}"><div style="margin-top:.25cqw"><a href="{{res.scene}}" target="_blank" rel="noopener" style="color:#ec2a8c;font-weight:700;white-space:nowrap" style-hover="color:#ee4f9e">להעמיק במחקר ↗</a></div></sc-if>
   </div>
 </div>
 </x-dc>
@@ -436,6 +437,13 @@ class Component extends DCLogic {
       8:[['fee',.06],['p1',.26],['p2',.33],['p3',.41],['p4',.49],['bars',.58],['shrink',.63],['mx',.8],['settle',.9]],
       9:[['days',.06],['ticks',.1],['a1',.2],['a2',.27],['a3',.34],['a4',.41],['a5',.48],['spark',.58],['kpi',.78],['settle',.9]],
     };
+    // ── המחקר המלא ────────────────────────────────────────────────────────
+    // href ריק => בלוק ההורדה במסך הסיום וקישור "להעמיק במחקר" בכל סצנה
+    // מוסתרים, כדי שלא ייווצרו קישורים שבורים. להפעלה: הצב כאן את כתובת
+    // הקובץ (נתיב בריפו כמו 'research/UNIT.pdf', או קישור מאוחסן מוגן).
+    // p ממפה כל סצנה לעמוד הפתיחה של הסעיף הרלוונטי במחקר.
+    this.RES={href:'',name:'תמחור תשומות ותוצרים בעידן ה-AI — השוק הישראלי',pages:24,
+      p:{1:1,2:3,3:11,4:5,5:7,6:17,7:7,8:15,9:15}};
     this.SRCN={
       1:{t:'מחקר עומק NGG · סינתזה אסטרטגית',h:''},
       2:{t:'מחקר עומק NGG · עדויות תמחור גלובליות',h:''},
@@ -701,6 +709,10 @@ class Component extends DCLogic {
     };
     const inn=F(5,'in');
     return {
+      res:{on:!!this.RES.href,href:this.RES.href||'#',
+           scene:this.RES.href?(this.RES.href+'#page='+(this.RES.p[v]||1)):'#',
+           sceneOn:!!this.RES.href&&(v>=1&&v<=9),
+           name:this.RES.name,pages:String(this.RES.pages)},
       onNext:()=>this.next(),
       onBack:()=>this.back(),
       onMute:()=>this.toggleMute(),

@@ -405,6 +405,17 @@ a:hover{color:#ec2a8c}
       <span style="background:#1b1b28;border:1px solid #ec2a8c;border-radius:999px;padding:9px 20px;font-size:14px;font-weight:700;color:#f1f0f4">לנהל את המערכת</span>
     </div>
     <div style="margin-top:30px;font-size:15px;color:#8e8d99">אבחון · מסגרת התנהגויות · סימולציה · משוב · יישום ומעקב</div>
+    <sc-if value="{{res.on}}" hint-placeholder-val="{{false}}">
+      <div style="margin-top:38px;display:flex;justify-content:center">
+        <a href="{{res.href}}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:14px;background:rgba(244,243,246,.05);border:1px solid rgba(244,243,246,.22);border-radius:12px;padding:15px 26px;text-align:right;color:#f1f0f4" style-hover="border-color:#ec2a8c;background:rgba(236,42,140,.08)">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#ec2a8c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>
+            <span style="display:block;font-size:15.5px;font-weight:700">להורדת המחקר המלא</span>
+            <span dir="ltr" style="display:block;margin-top:3px;font-size:12.5px;color:#8f8e9a;text-align:right"><span dir="rtl">{{res.name}}</span> · PDF · <span dir="rtl">{{res.pages}} עמ'</span></span>
+          </span>
+        </a>
+      </div>
+    </sc-if>
     <div style="margin-top:38px;display:flex;justify-content:center;gap:18px">
       <a href="index.html" style="background:#ec2a8c;color:#ffffff;border-radius:9px;padding:14px 34px;font-size:16px;font-weight:700;white-space:nowrap;display:inline-flex;align-items:center" style-hover="background:#d11e78">חזרה לספריית המחקרים</a>
       <button onClick="{{onRestart}}" style="background:transparent;color:#f1f0f4;border:1px solid rgba(244,243,246,.3);border-radius:9px;padding:13px 34px;font-size:16px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap" style-hover="border-color:#ec2a8c;color:#ec2a8c">צפייה מחדש</button>
@@ -443,8 +454,9 @@ a:hover{color:#ec2a8c}
   <button onClick="{{onNext}}" style="pointer-events:auto;background:#ec2a8c;color:#ffffff;border:none;border-radius:9px;padding:14px 58px;font-size:18px;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 8px 24px rgba(236,42,140,.3);{{ui.cta}}" style-hover="background:#d11e78" style-active="transform:scale(.985)">{{ctaTxt}}</button>
   <button onClick="{{onBack}}" title="חזרה לשקופית הקודמת" style="pointer-events:auto;background:transparent;border-radius:9px;padding:13px 24px;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:8px;{{ui.back}}" style-hover="border-color:#ec2a8c;color:#ee4f9e"><span style="font-size:16px">→</span><span>חזרה</span></button>
 </div>
-<div style="position:absolute;right:56px;bottom:52px;z-index:6;max-width:430px;text-align:right;font-size:11.5px;{{ui.src}}">
-  <span>{{srcTxt}}</span>
+<div style="position:absolute;right:56px;bottom:52px;z-index:6;max-width:560px;text-align:right;font-size:11.5px;line-height:1.5;{{ui.src}}">
+  <div>{{srcTxt}}</div>
+  <sc-if value="{{res.sceneOn}}" hint-placeholder-val="{{false}}"><div style="margin-top:4px"><a href="{{res.scene}}" target="_blank" rel="noopener" style="color:#ec2a8c;font-weight:700;white-space:nowrap" style-hover="color:#ee4f9e">להעמיק במחקר ↗</a></div></sc-if>
 </div>
 </div>
 </div>
@@ -597,6 +609,13 @@ class Component extends DCLogic {
           [48.7,'לא ללמד מנהלים AI —'],
           [51.5,'לפתח מנהלים שיודעים לנהל כשה-AI כבר נמצא בחדר.']]
     };
+    // ── המחקר המלא ────────────────────────────────────────────────────────
+    // href ריק => בלוק ההורדה במסך הסיום וקישור "להעמיק במחקר" בכל סצנה
+    // מוסתרים, כדי שלא ייווצרו קישורים שבורים. להפעלה: הצב כאן את כתובת
+    // הקובץ (נתיב בריפו כמו 'research/UNIT.pdf', או קישור מאוחסן מוגן).
+    // p ממפה כל סצנה לעמוד הפתיחה של הסעיף הרלוונטי במחקר.
+    this.RES={href:'',name:'המנהל בעידן ה-AI',pages:20,
+      p:{1:1,2:10,3:3,4:16,5:5,6:6,7:12,8:11,9:9,10:13}};
     this.SRC={
       1:'מחקר NGG 05 · אוטומציה של עבודה אדמיניסטרטיבית מול אחריות ניהולית חדשה',
       2:'מחקר NGG 05 · Deutsche Telekom — MINDR, ניהול רב-סוכני של אירועי רשת',
@@ -822,6 +841,10 @@ class Component extends DCLogic {
                        :('opacity:0;transform:translate('+((4-sp.i)*270)+'px,26px);transition:none')}));
 
     return {
+      res:{on:!!this.RES.href,href:this.RES.href||'#',
+           scene:this.RES.href?(this.RES.href+'#page='+(this.RES.p[v]||1)):'#',
+           sceneOn:!!this.RES.href&&(v>=1&&v<=10),
+           name:this.RES.name,pages:String(this.RES.pages)},
       onNext:()=>this.next(),onBack:()=>this.back(),onMute:()=>this.toggleMute(),onCC:()=>this.toggleCC(),onRestart:()=>this.restart(),
       rootRef:this.rootRef,progRef:this.progRef,
       sc:this.state.sc,
